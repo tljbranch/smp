@@ -8,8 +8,8 @@ phases:
       - sudo apt-add-repository universe
       - sudo apt-get update
       - sudo apt-get -y install python3-pip
-      - pip install --ignore-installed --upgrade pip
-      - pip install --ignore-installed --upgrade wheel
+      - pip3 install --ignore-installed --upgrade pip
+      - pip3 install --ignore-installed --upgrade wheel
       - sudo python3 -m pip install Flask
       
   build:
