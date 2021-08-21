@@ -4,10 +4,11 @@ phases:
   install:
     commands:
       - python3 --version
-      - sudo add-apt-repository universe
+      - sudo apt-get install software-properties-common
+      - sudo apt-add-repository universe
       - sudo apt-get update
-      - apt-get -y install python3-pip
-      - python3 -m pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org Flask --user
+      - sudo apt-get -y install python3-pip
+	    - python3 -m pip install Flask --user
       
   build:
     commands:
