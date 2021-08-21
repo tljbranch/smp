@@ -3,14 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - python3 --version
-      - sudo apt-get install software-properties-common
-      - sudo apt-add-repository universe
-      - sudo apt-get update
-      - sudo apt-get -y install python3-pip
-      - pip3 install --ignore-installed --upgrade pip
-      - pip3 install --ignore-installed --upgrade wheel
-      - sudo python3 -m pip install Flask
+      - sudo pip3 install Flask
       
   build:
     commands:
