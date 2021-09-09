@@ -20,7 +20,7 @@ artifacts:
     - web.py
     - appspec.yml
     - templates/layout.html
-    - templates/test.html
+    - templates/index.html
     - scripts/mkdir.sh
     - scripts/start_flask.sh
     - scripts/stop_flask1.sh
