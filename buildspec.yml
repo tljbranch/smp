@@ -1,7 +1,5 @@
 version: 0.2
-env:
-  variables:
-    APP_NAME: "smp-frontend-app"
+
 phases:
   install:
     runtime-versions:
@@ -15,4 +13,4 @@ phases:
       - ng build --configuration=production
   post_build:
     commands:
-      - echo build process finished, uploading to S3 now 
+      - echo Build completed on `date`
