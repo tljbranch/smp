@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components'
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'marketing-portal';
-  data = 'Hello Code';
+  user: CognitoUserInterface | undefined;
+  authState!: AuthState;
 
-  paymentHandler:any = null;
+  constructor(private ref: ChangeDetectorRef) {}
 
-  getVal() {
-    return 'Step by step'
+  ngOnInit() {
+    onAuthUIStateChange((authState, authData) => {
+      this.authState = authState;
+      this.user = authData as CognitoUserInterface;
+      this.ref.detectChanges();
+    })
   }
+
+  ngOnDestroy() {
+    return onAuthUIStateChange;
+  }
+
 }

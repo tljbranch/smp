@@ -19,6 +19,8 @@ import { CompanyEditComponent } from './components/company-edit/company-edit.com
 import { CompanyComponent } from './components/company/company.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     NgbModule,
     NgxBootstrapIconsModule.pick(allIcons),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AmplifyUIAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent]
