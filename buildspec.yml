@@ -1,28 +1,21 @@
 version: 0.2
 
-backend:
-  phases:
-    build:
-      commands:
-        - '# Execute Amplify CLI with the helper script'
-        - amplifyPush --simple
-frontend:        
-    phases:
-      install:
-        runtime-versions:
-          nodejs: 14.x
-        commands:
-          - echo install process started
-          - npm install && npm install -g @angular/cli
-      build:
-        commands:
-          - echo build process started now
-          - ng build --configuration=production
-      post_build:
-        commands:
-          - echo Build completed on `date`
-    artifacts:
-        files:
-            - '**/*'
-        base-directory: 'dist*'
-        discard-paths: yes    
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14.x
+    commands:
+      - echo install process started
+      - npm install && npm install -g @angular/cli
+  build:
+    commands:
+      - echo build process started now
+      - ng build --configuration=production
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'dist*'
+    discard-paths: yes    
