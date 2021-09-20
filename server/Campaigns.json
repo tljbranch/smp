@@ -1,0 +1,18 @@
+{
+	"Campaigns": [
+		{
+			"CAMPAIGNS_ID": "000001",
+			"CAMPAIGN_NAME": "Yu Zhong Dragon-Fest",
+			"DESCRIPTIONS": "Yu Zhong & Co is having an event that brings out the dragon in everyone",
+			"TAGS": [
+				"Mobile Legend",
+				"SG EVOS"
+			],
+			"CATEGORY": "Gaming",
+			"VENUE": "PASIR RIS PARK",
+			"COMPANIES_ID": "000001",
+			"START_DATE": "09092021",
+			"END_DATE": "16092021"
+		}
+	]
+}
