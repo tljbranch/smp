@@ -102,13 +102,17 @@
                                                 <tr>
                                                     <td>
                                                         <div class="widget-26-job-title">
-                                                            <a href="#">Gigabyte RTX 3060 Ti Asia Launch</a>
+																<div *ngIf="products.length === 0"></div>
+																<div *ngFor="let product of products" class="widget-26-job-title">
+																	<div>{{product.CAMPAIGNS_ID}}/{{product.CAMPAIGN_NAME}}</div>
+																</div>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="widget-26-job-info">
-                                                            <p class="type m-0">Computers</p>
-                                                        </div>
+                                                        <div *ngIf="products.length === 0"></div>
+															<div *ngFor="let product of products" class="widget-26-job-info">
+																<p class="type m-0">{{product.CATEGORY}}</p>
+															</div>
                                                     </td>
                                                     <td>
                                                         <div class="widget-26-job-salary">

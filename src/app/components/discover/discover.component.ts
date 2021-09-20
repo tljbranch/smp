@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CampaignsService } from '../../campaigns.service';
 
 @Component({
   selector: 'app-discover',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./discover.component.css']
 })
 export class DiscoverComponent implements OnInit {
+	
+	products = [];
 
-  constructor() { }
+  constructor(private campaignsService: CampaignsService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+	  this.campaignsService.sendGetRequest().subscribe((data: any[])=>{
+      console.log(data);
+      this.products = data;
+    })  
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompaniesService } from '../../campaigns.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+	
+	products = [];
 
-  constructor() { }
+  constructor(private companiesService: CompaniesService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+	  this.companiesService.sendGetRequest().subscribe((data: any[])=>{
+      console.log(data);
+      this.products = data;
+    })  
   }
 
 }

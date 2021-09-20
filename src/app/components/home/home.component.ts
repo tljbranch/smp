@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InfluencersService } from '../../influencers.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+	
+	products = [];
 
-  constructor() { }
+  constructor(private influencersService: InfluencersService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+	  this.influencersService.sendGetRequest().subscribe((data: any[])=>{
+      console.log(data);
+      this.products = data;
+    })  
   }
 
 }
