@@ -11,7 +11,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CompanyComponent } from './components/company/company.component';
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
-
+import { RedirectionComponent } from './components/redirection/redirection.component';
+import {UserTypeSelectComponent} from './components/user-type-select/user-type-select.component'
 
 const routes: Routes = [
   {
@@ -57,7 +58,15 @@ const routes: Routes = [
   {
     path: 'payment',
     component : PaymentComponent
-  }
+  },
+  {
+    path: 'redirection',
+    component : RedirectionComponent
+  },
+  {
+    path: 'user-type-select',
+    component : UserTypeSelectComponent
+  }  
 ];
 
 @NgModule({

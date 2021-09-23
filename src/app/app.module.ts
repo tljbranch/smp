@@ -20,6 +20,9 @@ import { CompanyComponent } from './components/company/company.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { RedirectionComponent } from './components/redirection/redirection.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { UserTypeSelectComponent } from './components/user-type-select/user-type-select.component';
 
 
 @NgModule({
@@ -37,6 +40,8 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
     ProfileEditComponent,
     CompanyEditComponent,
     CompanyComponent,
+    RedirectionComponent,
+    UserTypeSelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
     NgbModule,
     NgxBootstrapIconsModule.pick(allIcons),
     ReactiveFormsModule,
-    AmplifyUIAngularModule
+    AmplifyUIAngularModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
