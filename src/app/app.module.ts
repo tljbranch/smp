@@ -20,6 +20,7 @@ import { CompanyComponent } from './components/company/company.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
     NgbModule,
     NgxBootstrapIconsModule.pick(allIcons),
     ReactiveFormsModule,
-    AmplifyUIAngularModule
+    AmplifyUIAngularModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
