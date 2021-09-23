@@ -18,11 +18,11 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { CompanyComponent } from './components/company/company.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { RedirectionComponent } from './components/redirection/redirection.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { UserTypeSelectComponent } from './components/user-type-select/user-type-select.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -50,7 +50,8 @@ import { UserTypeSelectComponent } from './components/user-type-select/user-type
     NgxBootstrapIconsModule.pick(allIcons),
     ReactiveFormsModule,
     AmplifyUIAngularModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
