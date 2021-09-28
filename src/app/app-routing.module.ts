@@ -3,11 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
-import { LoginComponent } from './components/login/login.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
 import { CampaignEditComponent } from './components/campaign-edit/campaign-edit.component';
 import { DiscoverComponent } from './components/discover/discover.component';
-import { RegisterComponent } from './components/register/register.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CompanyComponent } from './components/company/company.component';
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
@@ -18,14 +16,6 @@ const routes: Routes = [
   {
     path: 'home',
     component : HomeComponent
-  },
-  {
-    path: 'login',
-    component : LoginComponent
-  },
-  {
-    path: 'register',
-    component : RegisterComponent
   },
   {
     path: 'profile',

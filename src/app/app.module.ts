@@ -6,11 +6,9 @@ import { AppComponent } from './app.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DiscoverComponent } from './components/discover/discover.component';
-import { RegisterComponent } from './components/register/register.component';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CampaignEditComponent } from './components/campaign-edit/campaign-edit.component';
@@ -30,11 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     TopMenuComponent,
     HomeComponent,
-    LoginComponent,
     CampaignComponent,
     ProfileComponent,
     DiscoverComponent,
-    RegisterComponent,
     PaymentComponent,
     CampaignEditComponent,
     ProfileEditComponent,
