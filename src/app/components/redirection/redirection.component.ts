@@ -1,6 +1,6 @@
 import { Attribute, Component, OnInit } from '@angular/core';
 import {MatSpinner} from '@angular/material/progress-spinner';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from '../../services/users.service';
 import { User } from '../../interfaces/User';
 import {Router} from '@angular/router';
 

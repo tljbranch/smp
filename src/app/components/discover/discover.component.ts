@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CampaignsService } from '../../campaigns.service';
+import { CampaignsService } from '../../services/campaigns.service';
 
 @Component({
   selector: 'app-discover',
