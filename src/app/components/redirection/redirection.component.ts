@@ -2,6 +2,7 @@ import { Attribute, Component, OnInit } from '@angular/core';
 import {MatSpinner} from '@angular/material/progress-spinner';
 import { UsersService } from 'src/app/users.service';
 import { User } from '../../interfaces/User';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -12,30 +13,34 @@ import { User } from '../../interfaces/User';
 
 export class RedirectionComponent implements OnInit {
   
-  route: string;
+  routeValue: string ="/redirection";
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private route:Router) { }
   
   ngOnInit(): void {
-    this.usersService.getCurrentUser.subscribe((user) => {
+    this.usersService.getCurrentUser().subscribe((user) => {
       if (user) {
+        console.log('user email exist: ',user);
         switch (user.USER_TYPE) {
           case "Admin":
-            this.route = "campaign-edit";
+            this.routeValue = "/campaign-edit";
             break;
           case "Company":
-            this.route = "company-edit";
+            this.routeValue = "/company-edit";
             break;
           case "Influencer":
-            this.route = "profile-edit";
+            this.routeValue = "/profile-edit";
             break;
           default:
-            this.route = "error";
+            console.log('User type not confirmed');
+            this.routeValue = "/user-type-select";
             break;
         }
       } else {
-        this.route = "user-type-select";
+        console.log('Not an existing user');
+        this.routeValue = "/user-type-select";
       }
+      this.route.navigate([this.routeValue]);
     });
   }
 
