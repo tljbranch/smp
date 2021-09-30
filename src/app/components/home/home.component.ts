@@ -10,6 +10,14 @@ export class HomeComponent implements OnInit {
 	
 	products = [];
 
+  page = {
+    title: 'Welcome Back ',
+    subtitle: 'Your one stop marketing portal.',
+    content: 'Region: ',
+    image: 'https://miro.medium.com/max/2000/0*72mDyfTcxtjgErD6.jpg'
+  }
+
+
   constructor(private influencersService: InfluencersService) { }
 
   ngOnInit() {

@@ -22,6 +22,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { UserTypeSelectComponent } from './components/user-type-select/user-type-select.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     AmplifyUIAngularModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
