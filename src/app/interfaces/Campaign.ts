@@ -1,4 +1,4 @@
-export interface Campaign{    
+export class Campaign{    
     CAMPAIGNS_ID?: string;
     CAMPAIGN_NAME?: string;
     DESCRIPTIONS?: string;

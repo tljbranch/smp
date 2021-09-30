@@ -25,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { CreateCampaignComponent } from './components/create-campaign/create-campaign.component'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FormsModule } from '@angular/forms'
     CompanyComponent,
     RedirectionComponent,
     UserTypeSelectComponent,
+    CreateCampaignComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
+import { CampaignsService } from '../../services/campaigns.service';
+import { Campaign } from '../../interfaces/Campaign';
+
+
+
 @Component({
   selector: 'app-campaign',
   templateUrl: './campaign.component.html',
@@ -7,9 +14,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CampaignComponent implements OnInit {
 
-  constructor() { }
+  title = 'Creating Campaign';
+  campaigns: Campaign[];
+  campaign = new Campaign();
 
-  ngOnInit(): void {
+  constructor(private campaignService: CampaignsService) { }
+
+  ngOnInit() {
+    this.refreshCampaigns();
+  }
+
+  refreshCampaigns() {
+    this.campaignService.getCampaign()
+      .subscribe(data => {
+        console.log(data)
+        this.campaigns = data;
+      })
+
+  }
+
+  addCampaign() {
+    this.campaignService.addCampaign(this.campaign)
+      .subscribe(data => {
+        console.log(data)
+        this.refreshCampaigns();
+      })
   }
 
 }

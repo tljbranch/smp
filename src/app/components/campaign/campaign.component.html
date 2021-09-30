@@ -84,3 +84,71 @@
 <script type="text/javascript">
 
 </script>
+<h1>{{title}}</h1>
+<div>
+  <div>
+    <label>Campaign Name: </label>
+    <input [(ngModel)]="campaign.CAMPAIGN_NAME" />
+  </div>
+  <div>
+    <label>Descriptions: </label>
+    <input [(ngModel)]="campaign.DESCRIPTIONS" />
+  </div>
+  <div>
+    <label>Tags: </label>
+    <input [(ngModel)]="campaign.TAGS" />
+  </div>
+  <div>
+    <label>Category: </label>
+    <input [(ngModel)]="campaign.CATEGORY" />
+  </div>
+  <div>
+    <label>Vanue: </label>
+    <input [(ngModel)]="campaign.VENUE" />
+  </div>
+  <div>
+    <label>Company ID: </label>
+    <input [(ngModel)]="campaign.COMPANIES_ID" />
+  </div>
+  <div>
+    <label>Start Date: </label>
+    <input [(ngModel)]="campaign.START_DATE" />
+  </div>
+  <div>
+    <label>End Date: </label>
+    <input [(ngModel)]="campaign.END_DATE" />
+  </div>
+
+  <div>
+    <button (click)="addCampaign()">Add</button>
+  </div>
+</div>
+ 
+<table class='table'>
+  <thead>
+    <tr>
+      <th>CAMPAIGN_ID</th>
+      <th>Campaign Name</th>
+      <th>Descriptions</th>
+      <th>Tags</th>
+      <th>Category</th>
+      <th>Venue</th>
+      <th>Company ID</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let campaign of campaigns;">
+      <td>{{campaign.CAMPAIGNS_ID}}</td>
+      <td>{{campaign.CAMPAIGN_NAME}}</td>
+      <td>{{campaign.DESCRIPTIONS}}</td>
+      <td>{{campaign.TAGS}}</td>
+      <td>{{campaign.CATEGORY}}</td>
+      <td>{{campaign.VENUE}}</td>
+      <td>{{campaign.COMPANIES_ID}}</td>
+      <td>{{campaign.START_DATE}}</td>
+      <td>{{campaign.END_DATE}}</td>
+    </tr>
+  </tbody>
+</table>
