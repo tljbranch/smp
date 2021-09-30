@@ -15,7 +15,10 @@ export class RedirectionComponent implements OnInit {
   
   routeValue: string ="/redirection";
 
-  constructor(private usersService: UsersService, private route:Router) { }
+  constructor(
+    private usersService: UsersService,
+    private route:Router
+    ) { }
   
   ngOnInit(): void {
     this.usersService.getCurrentUser().subscribe((user) => {

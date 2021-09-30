@@ -62,6 +62,7 @@ export class UsersService {
       console.log('mockUserpool return ', user);
       const { attributes } = user;
       this.currentUser = new UserModel(attributes.email);
+      return this.currentUser;
     }
   };
 

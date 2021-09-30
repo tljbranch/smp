@@ -21,6 +21,10 @@ import { RedirectionComponent } from './components/redirection/redirection.compo
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { UserTypeSelectComponent } from './components/user-type-select/user-type-select.component';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxStripeModule} from 'ngx-stripe';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CheckoutSuccessComponent } from './components/checkout-success/checkout-success.component';
+import { CheckoutCancelComponent } from './components/checkout-cancel/checkout-cancel.component';
 
 
 @NgModule({
@@ -38,6 +42,9 @@ import { HttpClientModule } from '@angular/common/http';
     CompanyComponent,
     RedirectionComponent,
     UserTypeSelectComponent,
+    CheckoutComponent,
+    CheckoutSuccessComponent,
+    CheckoutCancelComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     AmplifyUIAngularModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxStripeModule.forRoot('pk_test_51HIVqvIs1V0ZAkpP7Rben7HaMW5WZuZ5dAG8svGu3YbI3yE1AAkoD9VAjYRvVtfVoatUe7c8X01UTBy7CvkifR1F00hAhIPl9G')
   ],
   providers: [],
   bootstrap: [AppComponent]
