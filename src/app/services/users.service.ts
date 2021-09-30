@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { User, UserModel } from '../interfaces/User';
 import { Auth } from 'aws-amplify';
 import { from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,33 +23,34 @@ export class UsersService {
   private REST_API_SERVER = "http://localhost:5000/Users";
 
   constructor(private httpClient: HttpClient) {
-    this.getCurrentUserPromise.apply(null);
-   }
+    // this.getCurrentUserPromise.apply(null);
+  }
 
-  public getUsers(): Observable<User[]>{
+  public getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.REST_API_SERVER);
   }
 
-  public getUser(email: string): Observable<User>{
+  public getUser(email: string): Observable<User> {
     const url = `${this.REST_API_SERVER}/${email}`;
     return this.httpClient.get<User>(url);
   }
 
-  public deleteUser(user: User): Observable<User>{
+  public deleteUser(user: User): Observable<User> {
     const url = `${this.REST_API_SERVER}/${user.EMAIL}`;
     return this.httpClient.delete<User>(url);
   }
-  public updateUser(user: User): Observable<User>{
+  public updateUser(user: User): Observable<User> {
     const url = `${this.REST_API_SERVER}/${user.EMAIL}`;
-    return this.httpClient.put<User>(url,user,httpOptions);
+    return this.httpClient.put<User>(url, user, httpOptions);
   }
-  public addUser(user: User): Observable<User>{
-    return this.httpClient.post<User>(this.REST_API_SERVER,user,httpOptions);
+  public addUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.REST_API_SERVER, user, httpOptions);
   }
 
 
   private getCurrentUserPromise = async () => {
     if (this.currentUser) {
+      return null;
     } else {
       // const user = await Auth.currentAuthenticatedUser();
       //Mock Userpool call
@@ -58,14 +60,39 @@ export class UsersService {
       const user = await mockUserpool.apply(null);
       //Mock Userpool call
       console.log('mockUserpool return ', user);
-      const { attributes } = user;  
-      this.currentUser =  new UserModel(attributes.email);
+      const { attributes } = user;
+      this.currentUser = new UserModel(attributes.email);
     }
   };
 
-  public getCurrentUser(): Observable<User>{
-    const url = `${this.REST_API_SERVER}/${this.currentUser.EMAIL}`;
-    return this.httpClient.get<User>(url);
-  }
+  // public getCurrentUser(): Observable<User> {
+
+  //   const url = `${this.REST_API_SERVER}/${this.currentUser.EMAIL}`;
+  //   return this.httpClient.get<User>(url);
+  // }
+  // private getCurrentUserPromiseTest = async () => {
+  //   if (this.currentUser) {
+  //     return null;
+  //   } else {
+  //     // const user = await Auth.currentAuthenticatedUser();
+  //     //Mock Userpool call
+  //     const mockUserpool = async () => {
+  //       return { "attributes": { "email": "smp.marketing.nus.fb@gmail.com" } }
+  //     };
+  //     const user = await mockUserpool.apply(null);
+  //     //Mock Userpool call
+  //     console.log('mockUserpool return ', user);
+  //     const { attributes } = user;
+  //     return this.currentUser = new UserModel(attributes.email);
+  //   }
+  // };
+  public getCurrentUser(): Observable<User> {
+    return from(this.getCurrentUserPromise.apply(null)).pipe(
+      switchMap((user: User) => {
+        return this.getUser(user.EMAIL);
+      })
+    )
+  };
+    
 
 }
