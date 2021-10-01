@@ -12,8 +12,8 @@ import { CompanyEditComponent } from './components/company-edit/company-edit.com
 import { RedirectionComponent } from './components/redirection/redirection.component';
 import {UserTypeSelectComponent} from './components/user-type-select/user-type-select.component';
 import {CheckoutSuccessComponent} from './components/checkout-success/checkout-success.component';
-
-
+import {CheckoutCompleteComponent} from './components/checkout-complete/checkout-complete.component';
+import {CheckoutComponent} from './components/checkout/checkout.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -60,9 +60,17 @@ const routes: Routes = [
     component : UserTypeSelectComponent
   },
   {
-    path: 'checkout-success/:sesssionId',
+    path: 'checkout',
+    component : CheckoutComponent
+  },
+  {
+    path: 'checkout-success',
     component : CheckoutSuccessComponent
-  }  
+  },
+  {
+    path: 'checkout-complete',
+    component : CheckoutCompleteComponent
+  }
 ];
 
 @NgModule({

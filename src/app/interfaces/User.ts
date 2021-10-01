@@ -2,7 +2,7 @@ export interface User{
     EMAIL?: string;
     BIRTHDATE?: string;
     BLOCK_NUMBER?: string;
-    CAMPAIGN_FUNDS?: string;
+    CAMPAIGN_FUNDS?: number;
     CATEGORY?: string;
     COMPANY_NAME?: string;
     CONTACT_NUMBER?: string;
@@ -23,7 +23,7 @@ export class UserModel implements User{
     EMAIL?: string;
     BIRTHDATE?: string;
     BLOCK_NUMBER?: string;
-    CAMPAIGN_FUNDS?: string;
+    CAMPAIGN_FUNDS?: number;
     CATEGORY?: string;
     COMPANY_NAME?: string;
     CONTACT_NUMBER?: string;

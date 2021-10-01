@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { User, UserModel } from '../../interfaces/User';
-import { StripeService } from 'ngx-stripe';
 import { HttpClient } from '@angular/common/http';
 import { PaymentService } from '../../services/payment.service';
 import { Payment, PaymentModel } from '../../interfaces/Payment';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-checkout-success',
@@ -14,13 +14,15 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./checkout-success.component.css']
 })
 export class CheckoutSuccessComponent implements OnInit {
-  sessionId: string;
+  generateId: string;
   loading: boolean = true;
-  credit: string;
+  cost: number;
   message: string;
+  newPayment: Payment;
+  routeValue: string;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private stripeService: StripeService,
+    private route:Router,
     private usersService: UsersService,
     private paymentService: PaymentService,
     private http: HttpClient
@@ -29,46 +31,45 @@ export class CheckoutSuccessComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(
-      params => {
-        this.sessionId = params['sessionId'];
-        this.processPaymentPromise.apply(null);
-      }
-    );
-  }
-
-  private processPaymentPromise = async () => {
-    const stripe = require('stripe')('sk_test_51HIVqvIs1V0ZAkpPxaw60x6KFqWqU4XTl5l3wX8oiamASWZyj0Cwswke0rWb06EKvvsVFroi9c9bRBb3RmwKE4qq00gpmL07T2');
-    const session = await stripe.checkout.sessions.retrieve(this.sessionId);
-    let newPayment = new PaymentModel();
-    newPayment.PAYMENTS_ID = null;
-    newPayment.AMOUNT = session.amount_total;
-    newPayment.CAMPAIGN_FUNDS_PURCHASED = session.amount_total * 10;
-    newPayment.COMPANIES_ID = session.client_reference_id;
-    newPayment.PAYMENT_STATUS = session.payment_status;
-    newPayment.PAYMENT_TYPE = session.payment_method_types[0];
-    newPayment.TRANSACTION_ID = session.id;
-    this.paymentService.addPayment(newPayment).pipe(
-      switchMap((x: Payment) => {
-        if (x.PAYMENT_STATUS === "paid") {
-          this.credit = x.CAMPAIGN_FUNDS_PURCHASED.toString();
-        } else {
-          this.credit = "0";
-        }
+    this.activatedRoute.queryParams.pipe(
+      switchMap((params: Params) => {
+        this.generateId = params['generateId'];
+        this.getCost(params['priceId']);
         return this.usersService.getCurrentUser();
       }),
-      switchMap((y: User) => {
-        y.CAMPAIGN_FUNDS = (parseInt(y.CAMPAIGN_FUNDS)  + parseInt(this.credit)).toString() ;
-        return this.usersService.updateUser(y);
+      switchMap((user: User) => {
+        this.processPayment(user);
+        user.CAMPAIGN_FUNDS = parseInt(user.CAMPAIGN_FUNDS.toString()) + parseInt(this.cost.toString());
+        return this.usersService.updateUser(user);;
+      }),
+      switchMap((user: User) => {
+        return this.paymentService.addPayment(this.newPayment);
       })
-    ).subscribe(
-      z => {
-        if (this.credit==="0") {
-          this.message = "Your Payment did not succeed :(";
-        } else {
-          this.message = `${this.credit} credits have been added to your account. You have a total of ${z.CAMPAIGN_FUNDS} ready to go!`;
-        }
-      }
-    );
+    ).subscribe(payment => {
+      this.route.navigate(['checkout-complete'], { queryParams: { paymentId: payment.PAYMENTS_ID }});
+    });
+  }
+  private getCost(priceId: string){
+    switch(priceId){
+      case "price_1JeiMhIs1V0ZAkpPMGW7mEB2":
+        this.cost = 10;
+        break;
+      case "price_1JeiMhIs1V0ZAkpPxskv5c5Z":
+        this.cost = 50;
+        break;
+      case "price_1JeiMhIs1V0ZAkpP1et67ana":
+        this.cost = 100;
+        break;
+    }
+  } 
+  private processPayment(user: User) {
+    this.newPayment = new PaymentModel();
+    this.newPayment.PAYMENTS_ID = null;
+    this.newPayment.AMOUNT = this.cost;
+    this.newPayment.CAMPAIGN_FUNDS_PURCHASED = this.cost;
+    this.newPayment.COMPANIES_ID = user.EMAIL;
+    this.newPayment.PAYMENT_STATUS = "Success";
+    this.newPayment.PAYMENT_TYPE = "Stripe";
+    this.newPayment.TRANSACTION_ID = this.generateId;
   };
 }

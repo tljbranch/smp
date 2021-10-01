@@ -1,7 +1,7 @@
 export interface Payment {
-    PAYMENTS_ID: number;
-    TRANSACTION_ID: number;
-    COMPANIES_ID: number;
+    PAYMENTS_ID: string;
+    TRANSACTION_ID: string;
+    COMPANIES_ID: string;
     PAYMENT_TYPE: string;
     AMOUNT: number;
     CAMPAIGN_FUNDS_PURCHASED: number;
@@ -9,9 +9,9 @@ export interface Payment {
 
 }
 export class PaymentModel implements Payment {
-    PAYMENTS_ID: number;
-    TRANSACTION_ID: number;
-    COMPANIES_ID: number;
+    PAYMENTS_ID: string;
+    TRANSACTION_ID: string;
+    COMPANIES_ID: string;
     PAYMENT_TYPE: string;
     AMOUNT: number;
     CAMPAIGN_FUNDS_PURCHASED: number;

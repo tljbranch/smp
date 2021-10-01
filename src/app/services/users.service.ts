@@ -50,7 +50,7 @@ export class UsersService {
 
   private getCurrentUserPromise = async () => {
     if (this.currentUser) {
-      return null;
+      return this.currentUser;
     } else {
       // const user = await Auth.currentAuthenticatedUser();
       //Mock Userpool call

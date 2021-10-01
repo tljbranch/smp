@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class PaymentService {
     //private REST_API_SERVER = "http://localhost:3000/users";
-  private REST_API_SERVER = "http://localhost:5000/Users";
+  private REST_API_SERVER = "http://localhost:5001/Payments";
   constructor(private httpClient: HttpClient) { }
   
 
@@ -37,5 +37,9 @@ export class PaymentService {
   }
   public addPayment(payment: Payment): Observable<Payment>{
     return this.httpClient.post<Payment>(this.REST_API_SERVER,payment,httpOptions);
+  }
+  public verifyPayment(SESSION_ID: string): Observable<Payment>{
+    const url = `${this.REST_API_SERVER}/${SESSION_ID}`;
+    return this.httpClient.get<Payment>(url);
   }
 }

@@ -9,7 +9,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "server": "json-server --watch ./server/Influencers.json",
-    "serverUser": "json-server --watch ./server/Users.json --id EMAIL -p 5000"
+    "serverUsers": "json-server --watch ./server/Users.json --id EMAIL -p 5000",
+    "serverPayments": "json-server --watch ./server/Payments.json --id PAYMENTS_ID -p 5001"
   },
   "private": true,
   "dependencies": {

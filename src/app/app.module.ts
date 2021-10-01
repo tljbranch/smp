@@ -25,6 +25,7 @@ import {NgxStripeModule} from 'ngx-stripe';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CheckoutSuccessComponent } from './components/checkout-success/checkout-success.component';
 import { CheckoutCancelComponent } from './components/checkout-cancel/checkout-cancel.component';
+import { CheckoutCompleteComponent } from './components/checkout-complete/checkout-complete.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { CheckoutCancelComponent } from './components/checkout-cancel/checkout-c
     CheckoutComponent,
     CheckoutSuccessComponent,
     CheckoutCancelComponent,
+    CheckoutCompleteComponent,
   ],
   imports: [
     BrowserModule,
