@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CompaniesService } from '../../services/companies.service';
+import { UsersService } from 'src/app/services/users.service';
+import { User } from '../../interfaces/User';
 
 @Component({
   selector: 'app-profile',
@@ -8,14 +9,14 @@ import { CompaniesService } from '../../services/companies.service';
 })
 export class ProfileComponent implements OnInit {
 	
-	products = [];
+	user: User;
 
-  constructor(private companiesService: CompaniesService) { }
+  constructor(private userService: UsersService) { }
 
   ngOnInit() {
-	  this.companiesService.sendGetRequest().subscribe((data: any[])=>{
+	  this.userService.getUser("smp.marketing.nus.fb@gmail.com").subscribe((data)=>{
       console.log(data);
-      this.products = data;
+      this.user = data;
     })  
   }
 

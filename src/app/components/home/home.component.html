@@ -1,19 +1,24 @@
-<div style="padding: 13px;">
+<!-- <img class="fullBg" [src]="page.image"> -->
+<!-- <div style="background-image: url('https://miro.medium.com/max/2000/0*72mDyfTcxtjgErD6.jpg'); width: 100%; height: 850px; background-size: cover;" layout="row" layout-align="center center"></div> -->
+<mat-card >
     <div *ngIf="products.length === 0"></div>
-
+    <div *ngFor="let product of products" >
+    <mat-card-header>
+    <mat-card-title><h1>{{page.title}}{{product.FULL_NAME}}</h1></mat-card-title>
+        <mat-card-subtitle>{{page.subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+        <mat-card-content>
+         {{page.content}}{{product.NATIONALITY}}
+    
+    <!-- <div *ngIf="products.length === 0"></div>
     <div *ngFor="let product of products" style="margin-top:12px;">
         <div>
             <div>{{product.INFLUENCERS_ID}}</div>
             <div>{{product.FULL_NAME}} / {{product.NATIONALITY}}
             </div>
         </div>
-        <div>
-            <p>
-                {{product.CATEGORY}}
-            </p>
-            <img style="height:100%; width: 100%;" src="{{ product.imageUrl }}" />
-        </div>
-        <div>
-    </div>
-    </div>
+    </div> -->
+        </mat-card-content>
 </div>
+</mat-card>
+<div style="background-image: url('https://miro.medium.com/max/2000/0*72mDyfTcxtjgErD6.jpg'); width: 100%; height: 850px; background-size: cover;" layout="row" layout-align="center center"></div>

@@ -1,53 +1,65 @@
 {
-	"Influencers": [{
-		"INFLUENCERS_ID": "000001",
-		"CATEGORY": "Sports",
-		"FULL_NAME": "Xiao Ming",
-		"NATIONALITY": "Singaporean",
-		"GENDER": "Male",
-		"EMAIL": "xiaoxiao@gmail.com",
-		"BIRTHDATE": "13091993",
-		"LANGUAGE": [
-			"English",
-			"Mandarin"
-		],
-		"TAGS": [
-			"Basketball",
-			"SG Slingers"
-		],
-		"VERIFIED": true,
-		"PROFILE_PHOTO": "Basketball",
-		"SOCIAL_MEDIA": "https://instagram.com/basketballinsta"
-	}],
-	"Campaigns": [
-		{
-			"CAMPAIGNS_ID": "000001",
-			"CAMPAIGN_NAME": "Yu Zhong Dragon-Fest",
-			"DESCRIPTIONS": "Yu Zhong & Co is having an event that brings out the dragon in everyone",
-			"TAGS": [
-				"Mobile Legend",
-				"SG EVOS"
-			],
-			"CATEGORY": "Gaming",
-			"VENUE": "PASIR RIS PARK",
-			"COMPANIES_ID": "000001",
-			"START_DATE": "09092021",
-			"END_DATE": "16092021"
-		}
-	],
-	"Companies": [
-		{
-			"COMPANIES_ID": "000001",
-			"NATIONALITY": "Singaporean",
-			"COMPANY_NAME": "Yu Zhong & Co",
-			"EMAIL": "yuZHONGandCO@gmail.com",
-			"CONTACT_NUMBER": "65917362",
-			"BLOCK_NUMBER": "49",
-			"STREET_NAME": "Pasir Panjang Avenue 6",
-			"UNIT_NUMBER": "#01-166",
-			"POSTAL_CODE": "500549",
-			"CAMPAIGN_FUNDS": "20"
-		}
-	]
-	
+  "Influencers": [
+    {
+      "INFLUENCERS_ID": "000001",
+      "CATEGORY": "Sports",
+      "FULL_NAME": "Xiao Ming",
+      "NATIONALITY": "Singaporean",
+      "GENDER": "Male",
+      "EMAIL": "xiaoxiao@gmail.com",
+      "BIRTHDATE": "13091993",
+      "LANGUAGE": [
+        "English",
+        "Mandarin"
+      ],
+      "TAGS": [
+        "Basketball",
+        "SG Slingers"
+      ],
+      "VERIFIED": true,
+      "PROFILE_PHOTO": "Basketball",
+      "SOCIAL_MEDIA": "https://instagram.com/basketballinsta"
+    }
+  ],
+  "Campaigns": [
+    {
+      "CAMPAIGNS_ID": "000001",
+      "CAMPAIGN_NAME": "Yu Zhong Dragon-Fest",
+      "DESCRIPTIONS": "Yu Zhong & Co is having an event that brings out the dragon in everyone",
+      "TAGS": [
+        "Mobile Legend",
+        "SG EVOS"
+      ],
+      "CATEGORY": "Gaming",
+      "VENUE": "PASIR RIS PARK",
+      "COMPANIES_ID": "000001",
+      "START_DATE": "09/09/2021",
+      "END_DATE": "16/09/2021"
+    },
+    {
+      "CAMPAIGN_NAME": "Call of Duty",
+      "DESCRIPTIONS": "Having Wars",
+      "TAGS": "COD",
+      "CATEGORY": "Gaming",
+      "VENUE": "Esplanade",
+      "COMPANIES_ID": "000002",
+      "START_DATE": "01/10/2021",
+      "END_DATE": "02/10/2021",
+      "CAMPAIGNS_ID": "K9fD6LY"
+    }
+  ],
+  "Companies": [
+    {
+      "COMPANIES_ID": "000001",
+      "NATIONALITY": "Singaporean",
+      "COMPANY_NAME": "Yu Zhong & Co",
+      "EMAIL": "yuZHONGandCO@gmail.com",
+      "CONTACT_NUMBER": "65917362",
+      "BLOCK_NUMBER": "49",
+      "STREET_NAME": "Pasir Panjang Avenue 6",
+      "UNIT_NUMBER": "#01-166",
+      "POSTAL_CODE": "500549",
+      "CAMPAIGN_FUNDS": "20"
+    }
+  ]
 }

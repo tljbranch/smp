@@ -27,6 +27,11 @@ import { CheckoutSuccessComponent } from './components/checkout-success/checkout
 import { CheckoutCancelComponent } from './components/checkout-cancel/checkout-cancel.component';
 import { CheckoutCompleteComponent } from './components/checkout-complete/checkout-complete.component';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms';
+import { CreateCampaignComponent } from './components/create-campaign/create-campaign.component'
 
 @NgModule({
   declarations: [
@@ -47,6 +52,7 @@ import { CheckoutCompleteComponent } from './components/checkout-complete/checko
     CheckoutSuccessComponent,
     CheckoutCancelComponent,
     CheckoutCompleteComponent,
+    CreateCampaignComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +63,11 @@ import { CheckoutCompleteComponent } from './components/checkout-complete/checko
     AmplifyUIAngularModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    NgxStripeModule.forRoot('pk_test_51HIVqvIs1V0ZAkpP7Rben7HaMW5WZuZ5dAG8svGu3YbI3yE1AAkoD9VAjYRvVtfVoatUe7c8X01UTBy7CvkifR1F00hAhIPl9G')
+    NgxStripeModule.forRoot('pk_test_51HIVqvIs1V0ZAkpP7Rben7HaMW5WZuZ5dAG8svGu3YbI3yE1AAkoD9VAjYRvVtfVoatUe7c8X01UTBy7CvkifR1F00hAhIPl9G'),
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
