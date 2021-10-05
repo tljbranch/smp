@@ -26,7 +26,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
+
 import { CreateCampaignComponent } from './components/create-campaign/create-campaign.component'
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { CreateCampaignComponent } from './components/create-campaign/create-cam
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    FormsModule
+    FormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

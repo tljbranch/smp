@@ -10,7 +10,9 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { CompanyComponent } from './components/company/company.component';
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { RedirectionComponent } from './components/redirection/redirection.component';
-import {UserTypeSelectComponent} from './components/user-type-select/user-type-select.component'
+import { UserTypeSelectComponent} from './components/user-type-select/user-type-select.component'
+import { CreateCampaignComponent } from './components/create-campaign/create-campaign.component';
+
 
 const routes: Routes = [
   {
@@ -56,7 +58,11 @@ const routes: Routes = [
   {
     path: 'user-type-select',
     component : UserTypeSelectComponent
-  }  
+  },  
+  {
+    path: 'create-campaign',
+    component: CreateCampaignComponent
+  }
 ];
 
 @NgModule({

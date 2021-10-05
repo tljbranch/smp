@@ -102,17 +102,15 @@
                                                 <tr>
                                                     <td>
                                                         <div class="widget-26-job-title">
-																<div *ngIf="products.length === 0"></div>
-																<div *ngFor="let product of products" class="widget-26-job-title">
-																	<div>{{product.CAMPAIGNS_ID}}/{{product.CAMPAIGN_NAME}}</div>
-																</div>
+                                                            <div class="widget-26-job-salary">
+                                                                <span class="text-muted time">Name</span>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div *ngIf="products.length === 0"></div>
-															<div *ngFor="let product of products" class="widget-26-job-info">
-																<p class="type m-0">{{product.CATEGORY}}</p>
-															</div>
+                                                        <div class="widget-26-job-salary">
+                                                            <span class="text-muted time">Category</span>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="widget-26-job-salary">

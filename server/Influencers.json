@@ -46,6 +46,17 @@
       "START_DATE": "01/10/2021",
       "END_DATE": "02/10/2021",
       "CAMPAIGNS_ID": "K9fD6LY"
+    },
+    {
+      "CAMPAIGN_NAME": "Nana and Balmond Day",
+      "DESCRIPTIONS": "Nana and balmond will be throwing a totora party destroying turrets",
+      "TAGS": "MLBB",
+      "CATEGORY": "Gaming",
+      "VENUE": "Li Jie's House",
+      "COMPANIES_ID": "000003",
+      "START_DATE": "10/10/2021",
+      "END_DATE": "12/10/2021",
+      "CAMPAIGNS_ID": "Wr0W3VC"
     }
   ],
   "Companies": [
