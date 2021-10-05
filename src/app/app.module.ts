@@ -21,6 +21,11 @@ import { RedirectionComponent } from './components/redirection/redirection.compo
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { UserTypeSelectComponent } from './components/user-type-select/user-type-select.component';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxStripeModule} from 'ngx-stripe';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CheckoutSuccessComponent } from './components/checkout-success/checkout-success.component';
+import { CheckoutCancelComponent } from './components/checkout-cancel/checkout-cancel.component';
+import { CheckoutCompleteComponent } from './components/checkout-complete/checkout-complete.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -45,7 +50,11 @@ import { MatInputModule } from '@angular/material/input';
     CompanyComponent,
     RedirectionComponent,
     UserTypeSelectComponent,
-    CreateCampaignComponent,
+    CheckoutComponent,
+    CheckoutSuccessComponent,
+    CheckoutCancelComponent,
+    CheckoutCompleteComponent,
+    CreateCampaignComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +65,7 @@ import { MatInputModule } from '@angular/material/input';
     AmplifyUIAngularModule,
     MatProgressSpinnerModule,
     HttpClientModule,
+    NgxStripeModule.forRoot('pk_test_51HIVqvIs1V0ZAkpP7Rben7HaMW5WZuZ5dAG8svGu3YbI3yE1AAkoD9VAjYRvVtfVoatUe7c8X01UTBy7CvkifR1F00hAhIPl9G'),
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,

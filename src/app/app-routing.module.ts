@@ -10,10 +10,13 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { CompanyComponent } from './components/company/company.component';
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { RedirectionComponent } from './components/redirection/redirection.component';
-import { UserTypeSelectComponent} from './components/user-type-select/user-type-select.component'
 import { CreateCampaignComponent } from './components/create-campaign/create-campaign.component';
 
 
+import {UserTypeSelectComponent} from './components/user-type-select/user-type-select.component';
+import {CheckoutSuccessComponent} from './components/checkout-success/checkout-success.component';
+import {CheckoutCompleteComponent} from './components/checkout-complete/checkout-complete.component';
+import {CheckoutComponent} from './components/checkout/checkout.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -62,6 +65,18 @@ const routes: Routes = [
   {
     path: 'create-campaign',
     component: CreateCampaignComponent
+  },
+  {
+    path: 'checkout',
+    component : CheckoutComponent
+  },
+  {
+    path: 'checkout-success',
+    component : CheckoutSuccessComponent
+  },
+  {
+    path: 'checkout-complete',
+    component : CheckoutCompleteComponent
   }
 ];
 
