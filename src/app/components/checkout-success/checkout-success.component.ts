@@ -37,7 +37,7 @@ export class CheckoutSuccessComponent implements OnInit {
         this.getCost(params['priceId']);
         return this.usersService.getCurrentUser();
       }),
-      switchMap((user: User) => {
+      switchMap((user: UserModel) => {
         this.processPayment(user);
         user.CAMPAIGN_FUNDS = parseInt(user.CAMPAIGN_FUNDS.toString()) + parseInt(this.cost.toString());
         return this.usersService.updateUser(user);;

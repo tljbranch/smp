@@ -32,7 +32,7 @@ export class CheckoutCompleteComponent implements OnInit {
         this.newCredit = payment.AMOUNT;
         return this.usersService.getCurrentUser();
       })
-    ).subscribe((user:User)=>{
+    ).subscribe((user:UserModel)=>{
       this.totalCredit=user.CAMPAIGN_FUNDS;
       this.location.replaceState("checkout-complete");
     });

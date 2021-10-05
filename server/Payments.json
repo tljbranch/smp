@@ -35,6 +35,15 @@
       "PAYMENT_STATUS": "Success",
       "PAYMENT_TYPE": "Stripe",
       "TRANSACTION_ID": "1633056059312"
+    },
+    {
+      "PAYMENTS_ID": 5,
+      "AMOUNT": 10,
+      "CAMPAIGN_FUNDS_PURCHASED": 10,
+      "COMPANIES_ID": "smp.marketing.nus@gmail.com",
+      "PAYMENT_STATUS": "Success",
+      "PAYMENT_TYPE": "Stripe",
+      "TRANSACTION_ID": "1633454821492"
     }
   ]
 }

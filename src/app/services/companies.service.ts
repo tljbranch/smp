@@ -1,16 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Observable } from 'rxjs';
+import { Company } from '../interfaces/Company';
 
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
 @Injectable({
   providedIn: 'root'
 })
 export class CompaniesService {
 
-  private REST_API_SERVER = "http://localhost:3000/companies";
+  //private REST_API_SERVER = "http://localhost:3000/users";
+  private REST_API_SERVER = "http://localhost:5000/Companies";
 
-  constructor(private httpClient: HttpClient) { }
-
-  public sendGetRequest(){
-    return this.httpClient.get(this.REST_API_SERVER);
+  constructor(private httpClient: HttpClient) {
   }
+
+  public getCompanies(): Observable<Company[]> {
+    return this.httpClient.get<Company[]>(this.REST_API_SERVER);
+  }
+
+  public getCompany(email: string): Observable<Company> {
+    const url = `${this.REST_API_SERVER}/${email}`;
+    return this.httpClient.get<Company>(url);
+  }
+
+  public deleteCompany(company: Company): Observable<Company> {
+    const url = `${this.REST_API_SERVER}/${company.EMAIL}`;
+    return this.httpClient.delete<Company>(url);
+  }
+  public updateCompany(company: Company): Observable<Company> {
+    const url = `${this.REST_API_SERVER}/${company.EMAIL}`;
+    return this.httpClient.put<Company>(url, company, httpOptions);
+  }
+  public addCompany(company: Company): Observable<Company> {
+    return this.httpClient.post<Company>(this.REST_API_SERVER, company, httpOptions);
+  }   
+  
 }

@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   constructor(private influencersService: InfluencersService) { }
 
   ngOnInit() {
-	  this.influencersService.sendGetRequest().subscribe((data: any[])=>{
+	  this.influencersService.getInfluencers().subscribe((data: any[])=>{
       console.log(data);
       this.products = data;
     })  
