@@ -140,6 +140,10 @@ export class UsersService {
     )
   };
   
+  public getNewUserFromUserPool(): Observable<User> {
+    return from(this.getCurrentUserPromise.apply(null));
+  };
+
   public convertToUserModel(input:any): UserModel{
    let user = new UserModel("");
     if(input.USER_TYPE ==="Influencer"){
