@@ -117,16 +117,16 @@ export class UsersService {
     if (this.currentUser) {
       return this.currentUser;
     } else {
-      // const user = await Auth.currentAuthenticatedUser();
+      const user = await Auth.currentAuthenticatedUser();
+      console.log('AWS return from userpool', user);
       //Mock Userpool call
-      const mockUserpool = async () => {
-        // return { "attributes": { "email": "smp.marketing.nus.fb@gmail.com" } } //Influencer
-        return { "attributes": { "email": "smp.marketing.nus@gmail.com" } } //Company
-
-      };
-      const user = await mockUserpool.apply(null);
+      // const mockUserpool = async () => {
+      //   // return { "attributes": { "email": "smp.marketing.nus.fb@gmail.com" } } //Influencer
+      //   return { "attributes": { "email": "smp.marketing.nus@gmail.com" } } //Company
+      // };
+      // const user = await mockUserpool.apply(null);
       //Mock Userpool call
-      console.log('mockUserpool return ', user);
+      // console.log('mockUserpool return ', user);
       const { attributes } = user;
       this.currentUser = new UserModel(attributes.email);
       return this.currentUser;

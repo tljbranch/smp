@@ -15,30 +15,33 @@ const httpOptions = {
 export class CompaniesService {
 
   //private REST_API_SERVER = "http://localhost:3000/users";
-  private REST_API_SERVER = "http://localhost:5000/Companies";
-
+  //private REST_API_SERVER = "http://localhost:5000/Companies";
+  private REST_API_SERVER = "https://xf6hknrx2b.execute-api.ap-southeast-1.amazonaws.com/prod";
+  
   constructor(private httpClient: HttpClient) {
   }
 
   public getCompanies(): Observable<Company[]> {
+    const url = `${this.REST_API_SERVER}/companies`;
     return this.httpClient.get<Company[]>(this.REST_API_SERVER);
   }
 
   public getCompany(email: string): Observable<Company> {
-    const url = `${this.REST_API_SERVER}/${email}`;
+    const url = `${this.REST_API_SERVER}/company?EMAIL=${email}`;
     return this.httpClient.get<Company>(url);
   }
 
   public deleteCompany(company: Company): Observable<Company> {
-    const url = `${this.REST_API_SERVER}/${company.EMAIL}`;
+    const url = `${this.REST_API_SERVER}/company?EMAIL=${company.EMAIL}`;
     return this.httpClient.delete<Company>(url);
   }
   public updateCompany(company: Company): Observable<Company> {
-    const url = `${this.REST_API_SERVER}/${company.EMAIL}`;
+    const url = `${this.REST_API_SERVER}/company`;
     return this.httpClient.put<Company>(url, company, httpOptions);
   }
   public addCompany(company: Company): Observable<Company> {
-    return this.httpClient.post<Company>(this.REST_API_SERVER, company, httpOptions);
+    const url = `${this.REST_API_SERVER}/company`;
+    return this.httpClient.post<Company>(url, company, httpOptions);
   }   
   
 }
