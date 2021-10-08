@@ -7,7 +7,11 @@ import { Company } from '../interfaces/Company';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "https://amp-ng.d1sm3xjel2rimz.amplifyapp.com/"
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+    "Access-Control-Allow-Origin": "https://amp-ng.d1sm3xjel2rimz.amplifyapp.com/",
+    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH,OPTIONS"
+
   })
 }
 @Injectable({
