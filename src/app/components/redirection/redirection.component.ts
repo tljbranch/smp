@@ -3,7 +3,6 @@ import { MatSpinner } from '@angular/material/progress-spinner';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
-import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components'
 
 @Component({
   selector: 'app-redirection',
@@ -14,21 +13,13 @@ import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-ampli
 export class RedirectionComponent implements OnInit {
 
   routeValue: string = "/redirection";
-  title = 'marketing-portal';
-  user: CognitoUserInterface | undefined;
-  authState!: AuthState;
+
   constructor(
     private usersService: UsersService,
     private route: Router,
-    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
-    onAuthUIStateChange((authState, authData) => {
-      this.authState = authState;
-      this.user = authData as CognitoUserInterface;
-      this.ref.detectChanges();
-    });
     
     this.usersService.getCurrentUser().subscribe((user) => {
       if (user) {
@@ -54,9 +45,7 @@ export class RedirectionComponent implements OnInit {
       this.route.navigate([this.routeValue]);
     });
   }
-  ngOnDestroy() {
-    return onAuthUIStateChange;
-  }
+
   evaluate(): void {
 
   }
