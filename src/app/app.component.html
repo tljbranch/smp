@@ -1,6 +1,7 @@
 <amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
 <div *ngIf="authState === 'signedin' && user" class="App">
     <amplify-sign-out></amplify-sign-out>
+    <app-redirection></app-redirection>
     <div>Hi, {{user.username}}</div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
