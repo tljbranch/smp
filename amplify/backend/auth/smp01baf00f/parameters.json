@@ -57,7 +57,7 @@
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
     "authProviders": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://amp-ng.d1sm3xjel2rimz.amplifyapp.com/\"],\"LogoutURLs\":[\"https://amp-ng.d1sm3xjel2rimz.amplifyapp.com/\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://amp-ng.d1sm3xjel2rimz.amplifyapp.com/\",\"https://amp-ng.d1sm3xjel2rimz.amplifyapp.com/redirection/\"],\"LogoutURLs\":[\"https://amp-ng.d1sm3xjel2rimz.amplifyapp.com/\"]}",
     "userPoolGroups": false,
     "adminQueries": false,
     "thirdPartyAuth": false

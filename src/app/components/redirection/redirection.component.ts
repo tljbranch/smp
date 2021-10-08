@@ -28,17 +28,17 @@ export class RedirectionComponent implements OnInit {
           case null:
             console.log('User type not confirmed');
             this.routeValue = "/profile-edit";
-            this.route.navigate([this.routeValue]);
             break;
           default:
-            console.log('User type confirmed');
+            console.log('User type found', user.USER_TYPE);
+            this.routeValue = "/home";
             break;
         }
       } else {
         console.log('Not an existing user');
         this.routeValue = "/profile-edit";
-        this.route.navigate([this.routeValue]);
       }
+      this.route.navigate([this.routeValue]);
     }, (error) => {
       console.log('Not an existing user');
       this.routeValue = "/profile-edit";
