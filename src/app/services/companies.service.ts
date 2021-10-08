@@ -7,7 +7,7 @@ import { Company } from '../interfaces/Company';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "*"
+    "Access-Control-Allow-Origin": "https://amp-ng.d1sm3xjel2rimz.amplifyapp.com/"
   })
 }
 @Injectable({
@@ -29,12 +29,12 @@ export class CompaniesService {
 
   public getCompany(email: string): Observable<Company> {
     const url = `${this.REST_API_SERVER}/company?EMAIL=${email}`;
-    return this.httpClient.get<Company>(url);
+    return this.httpClient.get<Company>(url,httpOptions);
   }
 
   public deleteCompany(company: Company): Observable<Company> {
     const url = `${this.REST_API_SERVER}/company?EMAIL=${company.EMAIL}`;
-    return this.httpClient.delete<Company>(url);
+    return this.httpClient.delete<Company>(url,httpOptions);
   }
   public updateCompany(company: Company): Observable<Company> {
     const url = `${this.REST_API_SERVER}/company`;
