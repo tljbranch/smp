@@ -64,7 +64,7 @@ export class CheckoutSuccessComponent implements OnInit {
   } 
   private processPayment(user: User) {
     this.newPayment = new PaymentModel();
-    this.newPayment.PAYMENTS_ID = null;
+    this.newPayment.PAYMENTS_ID = this.generateId;
     this.newPayment.AMOUNT = this.cost;
     this.newPayment.CAMPAIGN_FUNDS_PURCHASED = this.cost;
     this.newPayment.COMPANIES_ID = user.EMAIL;
