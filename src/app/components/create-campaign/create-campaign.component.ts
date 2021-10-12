@@ -23,7 +23,7 @@ export class CreateCampaignComponent implements OnInit {
   }
 
   refreshCampaigns() {
-    this.campaignService.getCampaign()
+    this.campaignService.getCampaigns()
       .subscribe(data => {
         console.log(data)
         this.campaigns = data;

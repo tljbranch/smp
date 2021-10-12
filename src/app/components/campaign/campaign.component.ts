@@ -14,10 +14,10 @@ export class CampaignComponent implements OnInit {
   constructor(private campaignsService: CampaignsService) { }
 
   ngOnInit(){
-    this.campaignsService.sendGetRequest().subscribe((data: any[])=>{
-      console.log(data);
-      this.products = data;
-    })  
+    // this.campaignsService.sendGetRequest().subscribe((data: any[])=>{
+    //   console.log(data);
+    //   this.products = data;
+    // })  
   }
 
 }

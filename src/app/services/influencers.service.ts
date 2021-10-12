@@ -20,29 +20,8 @@ export class InfluencersService {
   private REST_API_SERVER = "https://sjfrf4muob.execute-api.ap-southeast-1.amazonaws.com/prod";
 
   constructor(private httpClient: HttpClient) {
-    // this.getCurrentUserPromise.apply(null);
   }
 
-  // public getInfluencers(): Observable<Influencer[]> {
-  //   return this.httpClient.get<Influencer[]>(this.REST_API_SERVER);
-  // }
-
-  // public getInfluencer(email: string): Observable<Influencer> {
-  //   const url = `${this.REST_API_SERVER}/${email}`;
-  //   return this.httpClient.get<Influencer>(url);
-  // }
-
-  // public deleteInfluencer(influencer: Influencer): Observable<Influencer> {
-  //   const url = `${this.REST_API_SERVER}/${influencer.EMAIL}`;
-  //   return this.httpClient.delete<Influencer>(url);
-  // }
-  // public updateInfluencer(influencer: Influencer): Observable<Influencer> {
-  //   const url = `${this.REST_API_SERVER}/${influencer.EMAIL}`;
-  //   return this.httpClient.put<Influencer>(url, influencer, httpOptions);
-  // }
-  // public addInfluencer(influencer: Influencer): Observable<Influencer> {
-  //   return this.httpClient.post<Influencer>(this.REST_API_SERVER, influencer, httpOptions);
-  // }
   public getInfluencers(): Observable<Influencer[]> {
     const url = `${this.REST_API_SERVER}/influencers`;
     return this.httpClient.get<Influencer[]>(this.REST_API_SERVER);
