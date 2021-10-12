@@ -24,6 +24,7 @@ export class CheckoutCompleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log("init activate ");
     this.activatedRoute.queryParams.pipe(
       switchMap((params: Params) => {
         console.log("paymentId is ",params['paymentId']);
@@ -32,7 +33,7 @@ export class CheckoutCompleteComponent implements OnInit {
       switchMap((payment: Payment) => {
         this.newCredit = payment.AMOUNT;
         console.log( "new credit is ",this.newCredit);
-        return this.usersService.getCurrentUser();
+        return this.usersService.getUser(payment.COMPANIES_ID);
       })
     ).subscribe((user:UserModel)=>{
       this.totalCredit=user.CAMPAIGN_FUNDS;
