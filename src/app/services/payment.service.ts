@@ -26,12 +26,12 @@ export class PaymentService {
   }
 
   public getPayment(PAYMENTS_ID: string): Observable<Payment> {
-    const url = `${this.REST_API_SERVER}/payment?EMAIL=${PAYMENTS_ID}`;
+    const url = `${this.REST_API_SERVER}/payment?PAYMENTS_ID=${PAYMENTS_ID}`;
     return this.httpClient.get<Payment>(url,httpOptions);
   }
 
   public deletePayment(payment: Payment): Observable<Payment> {
-    const url = `${this.REST_API_SERVER}/payment?EMAIL=${payment.PAYMENTS_ID}`;
+    const url = `${this.REST_API_SERVER}/payment?PAYMENTS_ID=${payment.PAYMENTS_ID}`;
     return this.httpClient.delete<Payment>(url,httpOptions);
   }
   public updatePayment(payment: Payment): Observable<Payment> {
