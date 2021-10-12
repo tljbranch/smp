@@ -17,7 +17,7 @@ export class InfluencersService {
 
   //private REST_API_SERVER = "http://localhost:3000/users";
   // private REST_API_SERVER = "http://localhost:5000/Influencers";
-  private REST_API_SERVER = "https://sjfrf4muob.execute-api.ap-southeast-1.amazonaws.com/prod";
+  private REST_API_SERVER = "https://r1qj4rbkv8.execute-api.ap-southeast-1.amazonaws.com/prod";
 
   constructor(private httpClient: HttpClient) {
   }
