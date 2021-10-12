@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, of } from 'rxjs';
 import { User, UserModel } from '../interfaces/User';
 import { Auth } from 'aws-amplify';
@@ -10,12 +9,6 @@ import { Company, CompanyModel } from '../interfaces/Company';
 import { InfluencersService } from './influencers.service';
 import { CompaniesService } from './companies.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-}
-
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +17,6 @@ export class UsersService {
   private currentUser: User;
 
   //private REST_API_SERVER = "http://localhost:3000/users";
-  private REST_API_SERVER = "http://localhost:5000/Users";
 
   constructor(
     private influencersService: InfluencersService,
