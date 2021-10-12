@@ -15,7 +15,7 @@ const httpOptions = {
 export class PaymentService {
     //private REST_API_SERVER = "http://localhost:3000/users";
   // private REST_API_SERVER = "http://localhost:5001/Payments";
-  private REST_API_SERVER = "https://sjfrf4muob.execute-api.ap-southeast-1.amazonaws.com/prod";
+  private REST_API_SERVER = "https://e7elrzd8a0.execute-api.ap-southeast-1.amazonaws.com/prod";
 
   constructor(private httpClient: HttpClient) { 
   }
