@@ -22,7 +22,7 @@ export class PaymentService {
   
   public getPayments(): Observable<Payment[]> {
     const url = `${this.REST_API_SERVER}/payments`;
-    return this.httpClient.get<Payment[]>(this.REST_API_SERVER);
+    return this.httpClient.get<Payment[]>(this.REST_API_SERVER,httpOptions);
   }
 
   public getPayment(PAYMENTS_ID: string): Observable<Payment> {

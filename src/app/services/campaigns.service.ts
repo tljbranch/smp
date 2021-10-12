@@ -22,7 +22,7 @@ export class CampaignsService {
 
   public getCampaigns(): Observable<Campaign[]> {
     const url = `${this.REST_API_SERVER}/campaigns`;
-    return this.httpClient.get<Campaign[]>(this.REST_API_SERVER);
+    return this.httpClient.get<Campaign[]>(this.REST_API_SERVER,httpOptions);
   }
   public getCampaign(CAMPAIGNS_ID: string): Observable<Campaign> {
     const url = `${this.REST_API_SERVER}/campagin?CAMPAIGNS_ID=${CAMPAIGNS_ID}`;
