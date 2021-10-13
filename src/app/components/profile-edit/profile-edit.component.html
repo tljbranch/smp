@@ -1,146 +1,417 @@
+
+<div *ngIf="alert" class="alert alert-danger" role="alert">
+    {{alert}}
+</div>
+<div *ngIf="success" class="alert alert-success" role="alert">
+    {{success}}
+</div>
 <div class="container">
     <div class="main-body">
         <div class="row gutters-sm">
             <div class="col-md-12">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <form [formGroup]="myForm" (ngSubmit)="submit()">
-                            <div class="row h-100 text-center">
-                                <div class="col-sm-12 my-auto mb-5">
-                                <img id="imgLogo" [src]="filePath" [alt]="myForm.value.name"alt="Profile Photo" class="rounded-circle" width="150">
-                            </div>
-                            </div>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Profile Photo</h6>
+                        <form [formGroup]="form" (ngSubmit)="editForm()">
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    EMAIL
                                 </div>
-                                <div class="col-sm-9 text-secondary my-auto">                                    
+                                <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <input id="file"  class="form-control" type="file" accept="image/*" (change)="imagePreview($event)" />
+                                        <input class="form-control" formControlName="EMAIL" type="text" required
+                                            readonly [ngModel]="user.EMAIL">
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Name</h6>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    ACCOUNT TYPE
                                 </div>
-                                <div class="col-sm-9 text-secondary my-auto">
+                                <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" value="John Doe">
+                                        <!-- <select class="form-select form-control" formControlName="USER_TYPE" required
+                                            [(ngModel)]="userType">
+                                            <option value="Influencer">Influencer</option>
+                                            <option value="Company">Company</option>
+                                        </select> -->
+                                         <input class="form-control" formControlName="USER_TYPE" type="text" required
+                                            readonly [ngModel]="user.USER_TYPE">
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Nationality</h6>
+                            <div class="row h-100 border-bottom" *ngIf="user.USER_TYPE==='Company'">
+                                <div class="col-sm-4 my-auto">
+                                    COMPANY NAME
                                 </div>
-                                <div class="col-sm-9 text-secondary my-auto">
+                                <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <select class="form-control" id="nationality">
-                                          <option selected="selected">Singaporean</option>
-                                          <option>Malaysian</option>
-                                          <option>Indonesian</option>
-                                          <option>Thai</option>
-                                          <option>Taiwanese</option>
-                                        </select>
+                                        <input class="form-control" formControlName="COMPANY_NAME" type="text" required
+                                            [ngModel]="user.COMPANY_NAME">
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Category</h6>
+                            <div class="row h-100 border-bottom" *ngIf="user.USER_TYPE==='Company'">
+                                <div class="col-sm-4 my-auto">
+                                    CAMPAIGN_FUNDS
                                 </div>
-                                <div class="col-sm-9 text-secondary my-auto">
+                                <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <select class="form-control" id="category">
-                                          <option selected="selected">Computers</option>
-                                          <option>Cars</option>
-                                          <option>Motocycle</option>
-                                          <option>Property</option>
-                                          <option>Gaming</option>
-                                        </select>
+                                        <input class="form-control" formControlName="CAMPAIGN_FUNDS" type="text"
+                                            required readonly [ngModel]="user.CAMPAIGN_FUNDS">
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Tags</h6>
+                            <div class="row h-100 border-bottom" *ngIf="user.USER_TYPE==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    BIRTH DATE
                                 </div>
-                                <div class="col-sm-9 text-secondary my-auto">
+                                <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <select multiple class="form-control" id="tags">
-                                          <option selected="selected">Desktop</option>
-                                          <option selected="selected">Keyboard</option>
-                                          <option selected="selected">Audio</option>
-                                          <option>Overclocking</option>
-                                          <option>Laptop</option>
-                                        </select>
-                                      </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Location</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary my-auto">
-                                    <div class="form-group">
-                                        <select class="form-control" id="nationality">
-                                          <option selected="selected">Singapore</option>
-                                          <option>Malaysia</option>
-                                          <option>Indonesia</option>
-                                          <option>Thailand</option>
-                                          <option>Taiwan</option>
-                                        </select>
+                                        <input class="form-control" formControlName="BIRTHDATE" type="date" required
+                                            [ngModel]="user.BIRTHDATE | date:'yyyy-MM-dd'" (ngModelChange) = "user.BIRTHDATE = $event">
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Gender</h6>
+                            <div class="row h-100 border-bottom" *ngIf="user.USER_TYPE==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    CATEGORY
                                 </div>
-                                <div class="col-sm-9 text-secondary my-auto">
+                                <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <select class="form-control" id="gender">
-                                            <option selected="selected">Male</option>
-                                            <option>Female</option>
-                                            <option>Prefer Not to Say</option>
-                                        </select>
+                                        <input class="form-control" formControlName="CATEGORY" type="text" required
+                                            [ngModel]="user.CATEGORY">
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Email</h6>
+                            <div class="row h-100 border-bottom" *ngIf="user.USER_TYPE==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    TAGS
                                 </div>
-                                <div class="col-sm-9 text-secondary my-auto">
+                                <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="email" value="john.doe@email.com">
+                                        <ng-select class="form-select" [multiple]=true class="form-control" formControlName="TAGS" [(ngModel)]="user.TAGS" required>
+                                            <ng-option *ngFor="let lang of languages | keyvalue" [value]="$any(lang.value).name">{{$any(lang.value).name}}</ng-option>
+                                        </ng-select>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row h-100">
-                                <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">End Date</h6>
+                            <div class="row h-100 border-bottom" *ngIf="user.USER_TYPE==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    LANGUAGE
                                 </div>
-                                <div class="col-sm-9 text-secondary my-auto">
+                                <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <input type="date" class="form-control" id="birthDate" value="2021-12-31">
+                                        <ng-select class="form-select" [multiple]=true class="form-control" formControlName="LANGUAGE" [(ngModel)]="user.LANGUAGE" required>
+                                            <ng-option *ngFor="let lang of languages | keyvalue" [value]="$any(lang.value).name">{{$any(lang.value).name}}</ng-option>
+                                        </ng-select>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <button type="button" class="btn btn-success float-end">Save</button>
-                                    <button type="button" class="btn btn-light float-start">Cancel</button>
+                            <div class="row h-100 border-bottom" *ngIf="user.USER_TYPE==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    SOCIAL MEDIA
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="SOCIAL_MEDIA" type="text" required
+                                            [ngModel]="user.SOCIAL_MEDIA">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="user.USER_TYPE==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    FULL NAME
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="FULL_NAME" type="text" required
+                                            [ngModel]="user.FULL_NAME">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    CONTACT NUMBER
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="CONTACT_NUMBER" type="text"
+                                            required [ngModel]="user.CONTACT_NUMBER">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    NATIONALITY
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <!-- <select class="form-select form-control" formControlName="NATIONALITY"
+                                            required [(ngModel)]="nationality">
+                                            <option *ngFor="let con of countries | keyvalue" [value]="$any(con.value).name">
+                                                {{$any(con.value).name}}
+                                            </option>
+                                        </select> -->
+                                        <ng-select class="form-select" class="form-control" formControlName="NATIONALITY" [(ngModel)]="user.NATIONALITY" required>
+                                            <ng-option *ngFor="let con of countries | keyvalue" [value]="$any(con.value).name">{{$any(con.value).name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    BLOCK NUMBER
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="BLOCK_NUMBER" type="text" required
+                                            [ngModel]="user.BLOCK_NUMBER">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    STREET NAME
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="STREET_NAME" type="text" required
+                                            [ngModel]="user.STREET_NAME">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    UNIT NUMBER
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="UNIT_NUMBER" type="text" required
+                                            [ngModel]="user.UNIT_NUMBER">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    POSTAL CODE
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="POSTAL_CODE" type="text" required
+                                            [ngModel]="user.POSTAL_CODE">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 mt-3">
+                                <div class="col-sm-12 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <button class="btn btn-success btn-block">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div *ngIf="email" class="card mb-3">
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="addForm()">
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    EMAIL
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="EMAIL" type="text" required
+                                            readonly [ngModel]="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    ACCOUNT TYPE
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <!-- <select class="form-select form-control" formControlName="USER_TYPE" required
+                                            [(ngModel)]="userType">
+                                            <option value="Influencer">Influencer</option>
+                                            <option value="Company">Company</option>
+                                        </select> -->
+                                        <ng-select class="form-select" class="form-control" formControlName="USER_TYPE" [(ngModel)]="userType" required>
+                                            <ng-option value="Influencer">Influencer</ng-option>
+                                            <ng-option value="Company">Company</ng-option>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="userType==='Company'">
+                                <div class="col-sm-4 my-auto">
+                                    COMPANY NAME
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="COMPANY_NAME" type="text" required
+                                            [ngModel]="companyName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="userType==='Company'">
+                                <div class="col-sm-4 my-auto">
+                                    CAMPAIGN_FUNDS
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="CAMPAIGN_FUNDS" type="text"
+                                            required readonly [ngModel]="campaignFunds">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="userType==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    BIRTH DATE
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="BIRTH_DATE" type="date" required
+                                            [ngModel]="birthDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="userType==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    CATEGORY
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="CATEGORY" type="text" required
+                                            [ngModel]="category">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="userType==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    TAGS
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <ng-select class="form-select" [multiple]=true class="form-control" formControlName="TAGS" [(ngModel)]="tags" required>
+                                            <ng-option *ngFor="let lang of languages | keyvalue" [value]="$any(lang.value).name">{{$any(lang.value).name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="userType==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    LANGUAGE
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <ng-select class="form-select" [multiple]=true class="form-control" formControlName="LANGUAGE" [(ngModel)]="language" required>
+                                            <ng-option *ngFor="let lang of languages | keyvalue" [value]="$any(lang.value).name">{{$any(lang.value).name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="userType==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    SOCIAL MEDIA
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="SOCIAL_MEDIA" type="text" required
+                                            [ngModel]="socialMedia">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom" *ngIf="userType==='Influencer'">
+                                <div class="col-sm-4 my-auto">
+                                    FULL NAME
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="FULL_NAME" type="text" required
+                                            [ngModel]="fullName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    CONTACT NUMBER
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="CONTACT_NUMBER" type="text"
+                                            required [ngModel]="contactNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    NATIONALITY
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <!-- <select class="form-select form-control" formControlName="NATIONALITY"
+                                            required [(ngModel)]="nationality">
+                                            <option *ngFor="let con of countries | keyvalue" [value]="$any(con.value).name">
+                                                {{$any(con.value).name}}
+                                            </option>
+                                        </select> -->
+                                        <ng-select class="form-select" class="form-control" formControlName="NATIONALITY" [(ngModel)]="nationality" required>
+                                            <ng-option *ngFor="let con of countries | keyvalue" [value]="$any(con.value).name">{{$any(con.value).name}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    BLOCK NUMBER
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="BLOCK_NUMBER" type="text" required
+                                            [ngModel]="blockNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    STREET NAME
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="STREET_NAME" type="text" required
+                                            [ngModel]="streetName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    UNIT NUMBER
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="UNIT_NUMBER" type="text" required
+                                            [ngModel]="unitNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 border-bottom">
+                                <div class="col-sm-4 my-auto">
+                                    POSTAL CODE
+                                </div>
+                                <div class="col-sm-8 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <input class="form-control" formControlName="POSTAL_CODE" type="text" required
+                                            [ngModel]="postalCode">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row h-100 mt-3">
+                                <div class="col-sm-12 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <button class="btn btn-success btn-block">Save</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -148,9 +419,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
-<script type="text/javascript">
-</script>

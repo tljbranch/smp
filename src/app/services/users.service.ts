@@ -96,6 +96,7 @@ export class UsersService {
         return of(this.convertToUserModel(input));
       }));
     }else if(user.USER_TYPE === 'Company'){
+      console.log("World");
       return this.companiesService.addCompany(user).pipe(switchMap((input:any)=>{
         return of(this.convertToUserModel(input));
       }));
@@ -110,7 +111,7 @@ export class UsersService {
       return this.currentUser;
     } else {
       const user = await Auth.currentAuthenticatedUser();
-      console.log('AWS return from userpool', user);
+      //console.log('AWS return from userpool', user);
       //Mock Userpool call
       // const mockUserpool = async () => {
       //   // return { "attributes": { "email": "smp.marketing.nus.fb@gmail.com" } } //Influencer

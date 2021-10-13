@@ -34,6 +34,8 @@ import { FormsModule } from '@angular/forms';
 
 import { CreateCampaignComponent } from './components/create-campaign/create-campaign.component'
 import { MatInputModule } from '@angular/material/input';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatToolbarModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    NgSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
