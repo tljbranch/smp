@@ -15,23 +15,23 @@ const httpOptions = {
 export class PaymentService {
     //private REST_API_SERVER = "http://localhost:3000/users";
   // private REST_API_SERVER = "http://localhost:5001/Payments";
-  private REST_API_SERVER = "https://sjfrf4muob.execute-api.ap-southeast-1.amazonaws.com/prod";
+  private REST_API_SERVER = "https://e7elrzd8a0.execute-api.ap-southeast-1.amazonaws.com/prod";
 
   constructor(private httpClient: HttpClient) { 
   }
   
   public getPayments(): Observable<Payment[]> {
     const url = `${this.REST_API_SERVER}/payments`;
-    return this.httpClient.get<Payment[]>(this.REST_API_SERVER);
+    return this.httpClient.get<Payment[]>(this.REST_API_SERVER,httpOptions);
   }
 
   public getPayment(PAYMENTS_ID: string): Observable<Payment> {
-    const url = `${this.REST_API_SERVER}/payment?EMAIL=${PAYMENTS_ID}`;
+    const url = `${this.REST_API_SERVER}/payment?PAYMENTS_ID=${PAYMENTS_ID}`;
     return this.httpClient.get<Payment>(url,httpOptions);
   }
 
   public deletePayment(payment: Payment): Observable<Payment> {
-    const url = `${this.REST_API_SERVER}/payment?EMAIL=${payment.PAYMENTS_ID}`;
+    const url = `${this.REST_API_SERVER}/payment?PAYMENTS_ID=${payment.PAYMENTS_ID}`;
     return this.httpClient.delete<Payment>(url,httpOptions);
   }
   public updatePayment(payment: Payment): Observable<Payment> {
