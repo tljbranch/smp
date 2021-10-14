@@ -23,7 +23,7 @@ export class CompaniesService {
 
   public getCompanies(): Observable<Company[]> {
     const url = `${this.REST_API_SERVER}/companies`;
-    return this.httpClient.get<Company[]>(this.REST_API_SERVER,httpOptions);
+    return this.httpClient.get<Company[]>(url,httpOptions);
   }
 
   public getCompany(email: string): Observable<Company> {

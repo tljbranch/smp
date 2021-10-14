@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { CampaignsService } from '../../services/campaigns.service';
+import { Campaign } from '../../interfaces/Campaign';
 
 @Component({
   selector: 'app-campaign',
@@ -9,15 +10,17 @@ import { CampaignsService } from '../../services/campaigns.service';
 })
 export class CampaignComponent implements OnInit {
 
-  products = [];
+  products:Campaign[] = [];
 
-  constructor(private campaignsService: CampaignsService) { }
+  constructor(private campaignsService: CampaignsService,private ref: ChangeDetectorRef) { }
 
   ngOnInit(){
-    // this.campaignsService.sendGetRequest().subscribe((data: any[])=>{
-    //   console.log(data);
-    //   this.products = data;
-    // })  
+      console.log("Hello");
+      this.campaignsService.getCampaigns().subscribe((data: Campaign[])=>{
+      console.log(data);
+      this.products = data;
+      this.ref.detectChanges();
+    })  
   }
 
 }

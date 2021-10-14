@@ -22,24 +22,24 @@ export class CampaignsService {
 
   public getCampaigns(): Observable<Campaign[]> {
     const url = `${this.REST_API_SERVER}/campaigns`;
-    return this.httpClient.get<Campaign[]>(this.REST_API_SERVER,httpOptions);
+    return this.httpClient.get<Campaign[]>(url,httpOptions);
   }
   public getCampaign(CAMPAIGNS_ID: string): Observable<Campaign> {
-    const url = `${this.REST_API_SERVER}/campagin?CAMPAIGNS_ID=${CAMPAIGNS_ID}`;
+    const url = `${this.REST_API_SERVER}/campaign?CAMPAIGNS_ID=${CAMPAIGNS_ID}`;
     return this.httpClient.get<Campaign>(url,httpOptions);
   }
 
-  public deleteCampaign(campagin: Campaign): Observable<Campaign> {
-    const url = `${this.REST_API_SERVER}/campagin?EMAIL=${campagin.CAMPAIGNS_ID}`;
+  public deleteCampaign(campaign: Campaign): Observable<Campaign> {
+    const url = `${this.REST_API_SERVER}/campaign?EMAIL=${campaign.CAMPAIGNS_ID}`;
     return this.httpClient.delete<Campaign>(url,httpOptions);
   }
-  public updateCampaign(campagin: Campaign): Observable<Campaign> {
-    const url = `${this.REST_API_SERVER}/campagin`;
-    return this.httpClient.put<Campaign>(url, campagin, httpOptions);
+  public updateCampaign(campaign: Campaign): Observable<Campaign> {
+    const url = `${this.REST_API_SERVER}/campaign`;
+    return this.httpClient.put<Campaign>(url, campaign, httpOptions);
   }
-  public addCampaign(campagin: Campaign): Observable<Campaign> {
-    const url = `${this.REST_API_SERVER}/campagin`;
-    return this.httpClient.post<Campaign>(url, campagin, httpOptions);
+  public addCampaign(campaign: Campaign): Observable<Campaign> {
+    const url = `${this.REST_API_SERVER}/campaign`;
+    return this.httpClient.post<Campaign>(url, campaign, httpOptions);
   }
 
 }

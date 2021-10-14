@@ -24,7 +24,7 @@ export class InfluencersService {
 
   public getInfluencers(): Observable<Influencer[]> {
     const url = `${this.REST_API_SERVER}/influencers`;
-    return this.httpClient.get<Influencer[]>(this.REST_API_SERVER,httpOptions);
+    return this.httpClient.get<Influencer[]>(url,httpOptions);
   }
 
   public getInfluencer(email: string): Observable<Influencer> {
