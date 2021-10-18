@@ -20,63 +20,78 @@ import {CheckoutComponent} from './components/checkout/checkout.component';
 const routes: Routes = [
   {
     path: 'home',
-    component : HomeComponent
+    component : HomeComponent,
+    pathMatch: 'full'
   },
   {
     path: 'profile',
-    component : ProfileComponent
+    component : ProfileComponent,
+    pathMatch: 'full'
   },
   {
     path: 'profile-edit',
-    component : ProfileEditComponent
+    component : ProfileEditComponent,
+    pathMatch: 'full'
   },
   {
     path: 'company',
-    component : CompanyComponent
+    component : CompanyComponent,
+    pathMatch: 'full'
   },
   {
     path: 'company-edit',
-    component : CompanyEditComponent
+    component : CompanyEditComponent,
+    pathMatch: 'full'
   },
   {
     path: 'campaign',
-    component : CampaignComponent
+    component : CampaignComponent,
+    pathMatch: 'full'
   },
   {
     path: 'campaign-edit',
-    component : CampaignEditComponent
+    component : CampaignEditComponent,
+    pathMatch: 'full'
   },
   {
     path: 'discover',
-    component : DiscoverComponent
+    component : DiscoverComponent,
+    pathMatch: 'full'
   },
   {
     path: 'payment',
-    component : PaymentComponent
+    component : PaymentComponent,
+    pathMatch: 'full'
   },
   {
     path: 'redirection',
-    component : RedirectionComponent
+    component : RedirectionComponent,
+    pathMatch: 'full'
   },
   {
     path: 'user-type-select',
-    component : UserTypeSelectComponent
+    component : UserTypeSelectComponent,
+    pathMatch: 'full'
   },  
   {
     path: 'create-campaign',
-    component: CreateCampaignComponent
+    component: CreateCampaignComponent,
+    pathMatch: 'full'
   },
   {
     path: 'checkout',
-    component : CheckoutComponent
+    component : CheckoutComponent,
+    pathMatch: 'full'
   },
   {
     path: 'checkout-success',
-    component : CheckoutSuccessComponent
+    component : CheckoutSuccessComponent,
+    pathMatch: 'full'
   },
   {
     path: 'checkout-complete',
-    component : CheckoutCompleteComponent
+    component : CheckoutCompleteComponent,
+    pathMatch: 'full'
   }
 ];
 

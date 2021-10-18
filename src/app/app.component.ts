@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, NgZone } from '@angular/core';
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components'
 
 @Component({
@@ -11,7 +11,7 @@ export class AppComponent {
   user: CognitoUserInterface | undefined;
   authState!: AuthState;
 
-  constructor(private ref: ChangeDetectorRef) {}
+  constructor(private zone: NgZone, private ref: ChangeDetectorRef) {}
 
   ngOnInit() {
     onAuthUIStateChange((authState, authData) => {
