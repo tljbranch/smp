@@ -64,11 +64,11 @@
                                 </div>
                                 <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <ng-select 
+                                        <ng-select (change)="getTags()"
                                             class="form-control"
-                                            [items]="countries"
-                                            bindLabel="name" 
-                                            bindValue="name" 
+                                            [items]="categories.classifications"
+                                            bindLabel="VALUE" 
+                                            bindValue="VALUE" 
                                             formControlName="CATEGORY"
                                            >
                                         </ng-select>
@@ -84,9 +84,9 @@
                                         <ng-select 
                                             class="form-control"
                                             [multiple]=true
-                                            [items]="languages"
-                                            bindLabel="name" 
-                                            bindValue="name" 
+                                            [items]="tags.classifications"
+                                            bindLabel="VALUE" 
+                                            bindValue="VALUE" 
                                             formControlName="TAGS"
                                            >
                                         </ng-select>
@@ -280,9 +280,9 @@
                                     <div class="form-group">
                                         <ng-select 
                                             class="form-control"
-                                            [items]="countries"
-                                            bindLabel="name" 
-                                            bindValue="name" 
+                                            [items]="categories"
+                                            bindLabel="VALUE" 
+                                            bindValue="VALUE" 
                                             formControlName="CATEGORY"
                                            >
                                         </ng-select>
@@ -298,9 +298,9 @@
                                         <ng-select 
                                             class="form-control"
                                             [multiple]=true
-                                            [items]="languages"
-                                            bindLabel="name" 
-                                            bindValue="name" 
+                                            [items]="tags.classifications"
+                                            bindLabel="VALUE" 
+                                            bindValue="VALUE" 
                                             formControlName="TAGS"
                                            >
                                         </ng-select>

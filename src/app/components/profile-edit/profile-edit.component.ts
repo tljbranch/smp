@@ -10,6 +10,7 @@ import { CompaniesService } from 'src/app/services/companies.service';
 import { controller } from 'ngx-bootstrap-icons';
 import { UsersService } from 'src/app/services/users.service';
 import { NgZone } from '@angular/core';
+import { ClassificationsService } from 'src/app/services/classifications.service';
 
 @Component({
   selector: 'app-profile-edit',
@@ -20,6 +21,8 @@ import { NgZone } from '@angular/core';
 
 export class ProfileEditComponent implements OnInit {
 
+  categories: any = { classfications: [] };
+  tags: any = { classfications: [] };
   countries: any[] = [];
   languages: any[] = [];
   userType: any[] = [{ id: "I", name: "Influencer" }, { id: "C", name: "Company" }]
@@ -51,14 +54,14 @@ export class ProfileEditComponent implements OnInit {
     VERIFIED: new FormControl(''),
   });
 
-  constructor(private ngZone: NgZone, private ref: ChangeDetectorRef, public fb: FormBuilder, public router: Router, private usersService: UsersService, private companiesService: CompaniesService) {
+  constructor(private ngZone: NgZone, private ref: ChangeDetectorRef, public fb: FormBuilder, public router: Router, private usersService: UsersService, private classificationsService: ClassificationsService) {
   }
 
   ngOnInit() {
     this.prepareNationalityDropdown();
     this.prepareLangaugeDropdown();
     this.getUser();
-    //this.setUserCategoryValidators();
+    this.getCategory();
   }
 
   prepareNationalityDropdown() {
@@ -104,9 +107,25 @@ export class ProfileEditComponent implements OnInit {
               }
             })
           }
-        }), (() => {
         })
       });
+    })
+  }
+
+  getCategory() {
+    this.ngZone.run(() => {
+      this.classificationsService.getCategories().subscribe(data => {
+        this.categories = data;
+      })
+    })
+  }
+
+  getTags() {
+    this.ngZone.run(() => {
+      console.log(this.profileForm.value.CATEGORY)
+      this.classificationsService.getTags(this.profileForm.value.CATEGORY).subscribe(data => {
+        this.tags = data;
+      })
     })
   }
 
@@ -133,6 +152,8 @@ export class ProfileEditComponent implements OnInit {
       this.profileForm.controls['LANGUAGE'].setValue(user.LANGUAGE);
       this.profileForm.controls['PROFILE_PHOTO'].setValue(user.PROFILE_PHOTO);
       this.profileForm.controls['SOCIAL_MEDIA'].setValue(user.SOCIAL_MEDIA);
+
+      this.getTags();
     })
   }
 
