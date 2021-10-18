@@ -2,6 +2,7 @@
     <div class="main-body">
           <div class="row gutters-sm">
             <div class="col-md-12">
+              <div *ngIf="!user">Loading</div>
               <div class="card mb-3" *ngIf="user">
                 <div class="card-body" *ngIf="user.USER_TYPE==='Company'">
                   <div class="row h-100">
@@ -159,15 +160,6 @@
                   <hr>
                   <div class="row h-100">
                     <div class="col-sm-3 my-auto">
-                      <h6 class="mb-0">Gender</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary my-auto">
-                      {{user.GENDER}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row h-100">
-                    <div class="col-sm-3 my-auto">
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary my-auto">
@@ -201,25 +193,54 @@
                       <h6 class="mb-0">Social Media</h6>
                     </div>
                     <div class="col-sm-9 text-secondary my-auto">
-                      <div class="widget-26-job-category bg-soft-warning" *ngFor="let socialMedia of user.SOCIAL_MEDIA">
-                        <i class="indicator bg-warning"></i>
-                        <span>{{socialMedia}}</span>
-                      </div>
+                      {{user.SOCIAL_MEDIA}}
                     </div>
                   </div>
-                  <div class="row d-none">
+                  <hr>
+                  <div class="row h-100">
+                    <div class="col-sm-3 my-auto">
+                      <h6 class="mb-0">Block Number</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary my-auto">
+                      {{user.BLOCK_NUMBER}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row h-100">
+                    <div class="col-sm-3 my-auto">
+                      <h6 class="mb-0">Street Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary my-auto">
+                      {{user.STREET_NAME}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row h-100">
+                    <div class="col-sm-3 my-auto">
+                      <h6 class="mb-0">Unit Number</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary my-auto">
+                      {{user.UNIT_NUMBER}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row h-100">
+                    <div class="col-sm-3 my-auto">
+                      <h6 class="mb-0">Postal Code</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary my-auto">
+                      {{user.POSTAL_CODE}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                      <a class="btn btn-success" style="float: right;" [routerLink]="['/profile-edit']" >Edit</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
     </div>
-
-<script type="text/javascript">
-
-</script>

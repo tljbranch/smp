@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Campaign } from 'src/app/interfaces/Campaign';
+import { Payment } from 'src/app/interfaces/Payment';
+import { PaymentService } from 'src/app/services/payment.service';
 import { UsersService } from 'src/app/services/users.service';
 import { UserModel } from '../../interfaces/User';
 
@@ -8,16 +11,19 @@ import { UserModel } from '../../interfaces/User';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-	
-	user: UserModel;
 
-  constructor(private userService: UsersService) { }
+  user: UserModel;
+  campaign: Payment;
+
+  paymentLoaded: Promise<boolean>
+
+  constructor(private ngZone: NgZone, private userService: UsersService) { }
 
   ngOnInit() {
-	  this.userService.getUser("smp.marketing.nus.fb@gmail.com").subscribe((data)=>{
-      console.log(data);
-      this.user = data;
-    })  
+      this.userService.getCurrentUser().subscribe(data => {
+        this.user = data
+        console.log(data);
+    })
   }
 
 }
