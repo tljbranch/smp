@@ -1,2 +1,40 @@
-<div>{{products.length}}</div>
+<div>{{projects.length}}</div>
 
+<h2>Testing Create Campaign!</h2>
+<nav>
+  <!-- <a routerLink = "/create-campaign">Click here to navigate to the Second component</a> -->
+  <button routerLink="/create-campaign" class="btn btn-primary">Create Campaign</button>
+</nav>
+
+<h2>My Campaign</h2>
+<!-- <ul class="Allcampaign">
+  <li *ngFor="let product of products">
+    <span class="badge">{{product.CAMPAIGNS_ID}}</span> {{product.CAMPAIGN_NAME}}
+  </li>
+</ul> -->
+
+<ul *ngFor="let p of projects| keyvalue">
+  <li>{{p.value.CAMPAIGNS_ID}}/{{p.value.CAMPAIGN_NAME}}</li>
+</ul>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mx-auto my-5" *ngFor="let p of projects| keyvalue">
+      <mdb-card>
+        <mdb-card-img [src]="card.img" alt="Card image cap">
+        </mdb-card-img>
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4>{{p.value.CAMPAIGNS_ID}}</h4>
+          </mdb-card-title>
+
+          <mdb-card-text>
+            {{p.value.CAMPAIGN_NAME}}
+          </mdb-card-text>
+
+          <button mdbBtn color="primary">{{p.value.CAMPAIGN_NAME}}</button>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</div>
