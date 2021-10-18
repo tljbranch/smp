@@ -1,2 +1,19 @@
-<div>{{products.length}}</div>
+<div>{{projects.length}}</div>
+
+<h2>Testing Create Campaign!</h2>
+<nav>
+  <!-- <a routerLink = "/create-campaign">Click here to navigate to the Second component</a> -->
+  <button routerLink="/create-campaign" class="btn btn-primary">Create Campaign</button>
+</nav>
+
+<h2>My Campaign</h2>
+<!-- <ul class="Allcampaign">
+  <li *ngFor="let product of products">
+    <span class="badge">{{product.CAMPAIGNS_ID}}</span> {{product.CAMPAIGN_NAME}}
+  </li>
+</ul> -->
+
+<ul *ngFor="let p of projects| keyvalue">
+  <li>{{p.value.CAMPAIGNS_ID}}/{{p.value.CAMPAIGN_NAME}}</li>
+</ul>
 
