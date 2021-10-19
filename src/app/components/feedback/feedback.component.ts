@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,ChangeDetectorRef ,OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { FeedbacksService } from '../../services/feedbacks.service';
 import { User } from '../../interfaces/User';
@@ -18,7 +18,8 @@ export class FeedbackComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private feedbacksService: FeedbacksService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -40,10 +41,13 @@ export class FeedbackComponent implements OnInit {
         }
         return this.feedbacksService.addFeedback(fb);
       })
-      ).subscribe(x=>
-        this.banner=true
+      ).subscribe(x=>{
+        this.banner=true;
+        this.text='';
+        this.ref.detectChanges();
+      }
       );
-
+      this.ref.detectChanges();
 
     }
   }
