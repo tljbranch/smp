@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { Campaign } from 'src/app/interfaces/Campaign';
@@ -17,8 +17,10 @@ export class CampaignEditComponent implements OnInit {
   categories: any[] = [];
   campaigns: Campaign[];
   campaign = new Campaign();
+  
 
-  constructor(public navCtrl: NgxNavigationWithDataComponent,private ngZone: NgZone,private classificationsService: ClassificationsService,private campaignService: CampaignsService,public router: Router) { 
+  constructor(public navCtrl: NgxNavigationWithDataComponent,private ngZone: NgZone,private classificationsService: ClassificationsService,
+    private campaignService: CampaignsService,public router: Router,private ref: ChangeDetectorRef) { 
     console.log(this.navCtrl.get('id')); // it will console Virendra
     console.log(this.navCtrl.data); // it will console whole data object here
   }
@@ -46,28 +48,31 @@ export class CampaignEditComponent implements OnInit {
       })
   }
 
-  getCategory() {
-    this.ngZone.run(() => {
-      this.classificationsService.getCategories().subscribe((data: any) => {
-        data.classifications.forEach((element) => {
-          this.classifications = data;
-          if (element.TYPES === 'CATEGORY') {
-            this.categories.push(element)
-          }
-          console.log(this.classifications);
-        });
-      })
-    })
-  }
-   
-  // getTags() {
-  //   console.log(this.classifications);
-  //   this.ngZone.run(() => {
-  //     this.classifications.classifications.forEach((element) => {
-  //       if (element.TYPES === 'TAG' && element.PARENT === this.campaignsService.value.CATEGORY) {
-  //         this.tags.push(element);
-  //       }
-  //     });
-  //   });
-  // }
+
+  async getCategory() {
+    if(this.categories.length > 0){
+      this.categories = [];
+    }
+    await this.classifications.classifications.forEach((element) => {
+      if (element.TYPES === 'CATEGORY') {
+        this.categories.push(element);
+      }
+    });
+    this.ref.detectChanges();
+}
+
+async getTags() {
+    if(this.tags.length > 0){
+      if (this.campaign.CATEGORY !== this.tags[0].PARENT) {
+        this.campaign.TAGS = [];
+      }
+      this.tags = [];
+    }
+    await this.classifications.classifications.forEach((element) => {
+      if (element.TYPES === 'TAG' && element.PARENT === this.campaign.CATEGORY) {
+        this.tags.push(element);
+      }
+    });
+    this.ref.detectChanges();
+}
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 
 import { CampaignsService } from '../../services/campaigns.service';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
@@ -19,7 +19,7 @@ export class CampaignComponent implements OnInit {
   user: UserModel;
   
 
-  constructor(private campaignsService: CampaignsService, private navCtrl: NgxNavigationWithDataComponent,private userService: UsersService,private ref: ChangeDetectorRef) { }
+  constructor(private campaignsService: CampaignsService, private navCtrl: NgxNavigationWithDataComponent,private userService: UsersService,private ref: ChangeDetectorRef,private ngZone: NgZone) { }
 
   ngOnInit() {
     this.campaignsService.getCampaigns().subscribe(
@@ -38,8 +38,15 @@ export class CampaignComponent implements OnInit {
   }
 
   navigateToEdit(id: string) {
+    this.ngZone.run(() => {
     this.navCtrl.navigate('/campaign-edit', {id:id});
-   }
+   })}
+
+   navigateToCreate() {
+    this.ngZone.run(() => {
+    this.navCtrl.navigate('/create-campaign');
+   })}
+
    
 
 }

@@ -2,7 +2,7 @@ export class Campaign{
     CAMPAIGNS_ID?: string;
     CAMPAIGN_NAME?: string;
     DESCRIPTIONS?: string;
-    TAGS?: string;
+    TAGS?: string[];
     CATEGORY?: string;
     VENUE?: string;
     COMPANIES_ID?: string;
