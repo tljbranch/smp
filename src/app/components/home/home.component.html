@@ -2,13 +2,10 @@
     <div>
         <mat-card-header>
             <mat-card-title>
-                <h1>{{page.title}}{{user.FULL_NAME}}</h1>
+                <h1>{{page.title}}{{user.FULL_NAME}}{{user.COMPANY_NAME}}</h1>
             </mat-card-title>
-            <mat-card-subtitle>{{page.subtitle}}</mat-card-subtitle>
+            <mat-card-subtitle>{{page.subtitle}}<br>{{page.content}}{{user.NATIONALITY}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content>
-            {{page.content}}{{user.NATIONALITY}}
-        </mat-card-content>
     </div>
 </mat-card>
 <div style="background-image: url('https://miro.medium.com/max/2000/0*72mDyfTcxtjgErD6.jpg'); width: 100%; height: 850px; background-size: cover;"
