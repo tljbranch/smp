@@ -12,7 +12,7 @@ export class AppComponent {
   user: CognitoUserInterface | undefined;
   authState!: AuthState;
   isCompany: boolean;
-
+  isInfluencer: boolean;
   constructor(private zone: NgZone, private ref: ChangeDetectorRef, private usersService: UsersService) { }
 
   ngOnInit() {
@@ -26,6 +26,13 @@ export class AppComponent {
           this.ref.detectChanges();
         } else {
           this.isCompany = false;
+          this.ref.detectChanges();
+        }
+        if(data.USER_TYPE === "Influencer"){
+          this.isInfluencer = true;
+          this.ref.detectChanges();
+        } else{
+          this.isInfluencer = false;
           this.ref.detectChanges();
         }
       })
