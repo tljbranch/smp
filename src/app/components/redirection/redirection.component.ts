@@ -22,7 +22,13 @@ export class RedirectionComponent implements OnInit {
   ngOnInit(): void {
     
     this.usersService.getCurrentUser().subscribe((user) => {
+      console.log('Redirection - User init');
       if (user) {
+        if(user===null){
+          console.log('User is null');
+          this.routeValue = "/profile-edit";
+          this.route.navigate([this.routeValue]);
+        }
         console.log('user email exist: ', user);
         switch (user.USER_TYPE) {
           case null:
@@ -37,8 +43,8 @@ export class RedirectionComponent implements OnInit {
             break;
         }
       }else{
-        console.log('User Not type found', user.USER_TYPE);
-          this.routeValue = "/home";
+        console.log('User Not type found');
+          this.routeValue = "/profile-edit";
           this.route.navigate([this.routeValue]);
       }
     }, (error) => {
