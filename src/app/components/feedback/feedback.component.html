@@ -1,0 +1,11 @@
+<p>feedback works!</p>
+<div *ngIf="banner">Feedback Submitted. Thank You!</div>
+<form (ngSubmit)="onSubmit()">
+
+    <div class="form-control">
+        <label for="text">Welcome to enter your feedback:</label>
+        <input type="text" name="text" id="text" placeholder="Please enter your message" [(ngModel)]="text">
+    </div>
+
+    <input type="submit" value="Save Task" class="btn btn-block">
+</form>

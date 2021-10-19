@@ -36,6 +36,7 @@ import { CreateCampaignComponent } from './components/create-campaign/create-cam
 import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CheckoutSuccessComponent,
     CheckoutCancelComponent,
     CheckoutCompleteComponent,
-    CreateCampaignComponent
+    CreateCampaignComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
