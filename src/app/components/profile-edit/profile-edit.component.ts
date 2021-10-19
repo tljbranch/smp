@@ -5,9 +5,6 @@ import { countries, languages } from 'countries-list';
 import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
 
-import { InfluencersService } from 'src/app/services/influencers.service';
-import { CompaniesService } from 'src/app/services/companies.service';
-import { controller } from 'ngx-bootstrap-icons';
 import { UsersService } from 'src/app/services/users.service';
 import { NgZone } from '@angular/core';
 import { ClassificationsService } from 'src/app/services/classifications.service';

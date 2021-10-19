@@ -7,7 +7,7 @@ import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-ampli
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'marketing-portal';
+  title = 'Social Marketing Portal';
   user: CognitoUserInterface | undefined;
   authState!: AuthState;
 

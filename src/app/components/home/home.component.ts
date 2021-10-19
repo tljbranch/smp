@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InfluencersService } from '../../services/influencers.service';
+import { UserModel } from 'src/app/interfaces/User';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { InfluencersService } from '../../services/influencers.service';
 })
 export class HomeComponent implements OnInit {
 	
-	products = [];
+	user: UserModel;
 
   page = {
     title: 'Welcome Back ',
@@ -18,12 +19,12 @@ export class HomeComponent implements OnInit {
   }
 
 
-  constructor(private influencersService: InfluencersService) { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-	  this.influencersService.getInfluencers().subscribe((data: any[])=>{
+	  this.usersService.getCurrentUser().subscribe((data)=>{
       console.log(data);
-      this.products = data;
+      this.user = data;
     })  
   }
 

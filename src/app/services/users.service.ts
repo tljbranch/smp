@@ -16,53 +16,21 @@ import { CompaniesService } from './companies.service';
 export class UsersService {
   private currentUser: User;
 
-  //private REST_API_SERVER = "http://localhost:3000/users";
-
   constructor(
     private influencersService: InfluencersService,
     private companiesService: CompaniesService) {
   }
 
-  // public getUsers(): Observable<User[]> {
-  //   return this.httpClient.get<User[]>(this.REST_API_SERVER);
-  // }
-
   public getUser(email: string): Observable<UserModel> {
-    // const url = `${this.REST_API_SERVER}/${email}`;
-    // return this.httpClient.get<User>(url);
     return this.influencersService.getInfluencer(email).pipe(
         switchMap((influencer:Influencer)=>{
           return of(this.convertToUserModel(influencer)); 
         }),
         catchError(() => this.companiesService.getCompany(email))
     );
-    // return this.influencersService.getInfluencer(email).pipe(
-    //   switchMap( (influencer:any)=>{
-    //     if(influencer){
-    //       return of(this.convertToUserModel(influencer));
-    //     }else{
-    //       console.log("getCompany");
-    //       return this.companiesService.getCompany(email);
-    //     }
-    //   }),
-    //   switchMap((input:any)=>{
-    //     if(input===null){
-    //       console.log("input===null");
-    //       return of(null);
-    //     }
-    //     else if(input instanceof UserModel){
-    //       console.log("input instanceof UserModel");
-    //       return of(input);
-    //     }else{
-    //       return of(this.convertToUserModel(input));
-    //     }
-    //   })
-    // );
   }
 
   public deleteUser(user: UserModel): Observable<UserModel> {
-    // const url = `${this.REST_API_SERVER}/${user.EMAIL}`;
-    // return this.httpClient.delete<User>(url);
     if(user.USER_TYPE === 'Influencer'){
       return this.influencersService.deleteInfluencer(user).pipe(switchMap((input:any)=>{
         return of(this.convertToUserModel(input));
@@ -111,15 +79,6 @@ export class UsersService {
       return this.currentUser;
     } else {
       const user = await Auth.currentAuthenticatedUser();
-      //console.log('AWS return from userpool', user);
-      //Mock Userpool call
-      // const mockUserpool = async () => {
-      //   // return { "attributes": { "email": "smp.marketing.nus.fb@gmail.com" } } //Influencer
-      //   return { "attributes": { "email": "smp.marketing.nus@gmail.com" } } //Company
-      // };
-      // const user = await mockUserpool.apply(null);
-      //Mock Userpool call
-      // console.log('mockUserpool return ', user);
       const { attributes } = user;
       this.currentUser = new UserModel(attributes.email);
       return this.currentUser;
