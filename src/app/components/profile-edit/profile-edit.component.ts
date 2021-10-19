@@ -18,8 +18,9 @@ import { ClassificationsService } from 'src/app/services/classifications.service
 
 export class ProfileEditComponent implements OnInit {
 
-  categories: any = { classfications: [] };
-  tags: any = { classfications: [] };
+  classifications: any = { classifications: [] };
+  categories: any[] = [];
+  tags: any[] = [];
   countries: any[] = [];
   languages: any[] = [];
   userType: any[] = [{ id: "I", name: "Influencer" }, { id: "C", name: "Company" }]
@@ -44,10 +45,10 @@ export class ProfileEditComponent implements OnInit {
     POSTAL_CODE: new FormControl('', [Validators.required]),
     PROFILE_PHOTO: new FormControl(''),
     SOCIAL_MEDIA: new FormControl(''),
-    STREET_NAME: new FormControl('',[Validators.required]),
+    STREET_NAME: new FormControl('', [Validators.required]),
     TAGS: new FormControl(''),
     UNIT_NUMBER: new FormControl('', [Validators.required]),
-    USER_TYPE: new FormControl('',[Validators.required]),
+    USER_TYPE: new FormControl('', [Validators.required]),
     VERIFIED: new FormControl(''),
   });
 
@@ -111,19 +112,26 @@ export class ProfileEditComponent implements OnInit {
 
   getCategory() {
     this.ngZone.run(() => {
-      this.classificationsService.getCategories().subscribe(data => {
-        this.categories = data;
+      this.classificationsService.getCategories().subscribe((data: any) => {
+        data.classifications.forEach((element) => {
+          this.classifications = data;
+          if (element.TYPES === 'CATEGORY') {
+            this.categories.push(element)
+          }
+        });
       })
     })
   }
 
   getTags() {
+    console.log(this.classifications);
     this.ngZone.run(() => {
-      console.log(this.profileForm.value.CATEGORY)
-      this.classificationsService.getTags(this.profileForm.value.CATEGORY).subscribe(data => {
-        this.tags = data;
-      })
-    })
+      this.classifications.classifications.forEach((element) => {
+        if (element.TYPES === 'TAG' && element.PARENT === this.profileForm.value.CATEGORY) {
+          this.tags.push(element);
+        }
+      });
+    });
   }
 
   setUpdateForm(user: UserModel) {
