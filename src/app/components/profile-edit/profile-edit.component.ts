@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from 'src/app/interfaces/User';
 import { countries, languages } from 'countries-list';
-import { Router } from '@angular/router';
 import { Auth } from 'aws-amplify';
+import { Router } from '@angular/router';
+
 
 import { UsersService } from 'src/app/services/users.service';
 import { NgZone } from '@angular/core';
