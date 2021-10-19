@@ -7,7 +7,7 @@ import { Auth } from 'aws-amplify';
 
 import { UsersService } from 'src/app/services/users.service';
 import { NgZone } from '@angular/core';
-import { ClassificationsService } from 'src/app/services/classifications.service';
+import { ClassificationsService } from '../../services/classifications.service'
 
 @Component({
   selector: 'app-profile-edit',
@@ -116,7 +116,7 @@ export class ProfileEditComponent implements OnInit {
         data.classifications.forEach((element) => {
           this.classifications = data;
           if (element.TYPES === 'CATEGORY') {
-            this.categories.push(element)
+            this.categories.push(element);
           }
         });
       })

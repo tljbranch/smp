@@ -20,9 +20,10 @@ export class ProfileComponent implements OnInit {
   constructor(private ngZone: NgZone, private userService: UsersService) { }
 
   ngOnInit() {
+    this.ngZone.run(() => {
       this.userService.getCurrentUser().subscribe(data => {
-        this.user = data
-        console.log(data);
+        this.user = data;
+      })
     })
   }
 
