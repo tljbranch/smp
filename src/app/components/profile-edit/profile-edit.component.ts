@@ -57,10 +57,12 @@ export class ProfileEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.prepareNationalityDropdown();
-    this.prepareLangaugeDropdown();
-    this.getUser();
-    this.getCategory();
+    this.ngZone.run(() => {
+      this.prepareNationalityDropdown();
+      this.prepareLangaugeDropdown();
+      this.getClassifications();
+      this.getUser();
+    })
   }
 
   prepareNationalityDropdown() {
@@ -111,28 +113,40 @@ export class ProfileEditComponent implements OnInit {
     })
   }
 
-  getCategory() {
+  getClassifications() {
     this.ngZone.run(() => {
       this.classificationsService.getCategories().subscribe((data: any) => {
-        data.classifications.forEach((element) => {
-          this.classifications = data;
-          if (element.TYPES === 'CATEGORY') {
-            this.categories.push(element);
-          }
-        });
-      })
-    })
+        this.classifications = data;
+        this.ref.detectChanges();
+      });
+    });
   }
 
-  getTags() {
-    console.log(this.classifications);
-    this.ngZone.run(() => {
-      this.classifications.classifications.forEach((element) => {
+  async getCategory() {
+      if(this.categories.length > 0){
+        this.categories = [];
+      }
+      await this.classifications.classifications.forEach((element) => {
+        if (element.TYPES === 'CATEGORY') {
+          this.categories.push(element);
+        }
+      });
+      this.ref.detectChanges();
+  }
+
+  async getTags() {
+      if(this.tags.length > 0){
+        if (this.profileForm.value.CATEGORY !== this.tags[0].PARENT) {
+          this.profileForm.controls['TAGS'].setValue([]);
+        }
+        this.tags = [];
+      }
+      await this.classifications.classifications.forEach((element) => {
         if (element.TYPES === 'TAG' && element.PARENT === this.profileForm.value.CATEGORY) {
           this.tags.push(element);
         }
       });
-    });
+      this.ref.detectChanges();
   }
 
   setUpdateForm(user: UserModel) {
@@ -159,7 +173,9 @@ export class ProfileEditComponent implements OnInit {
       this.profileForm.controls['PROFILE_PHOTO'].setValue(user.PROFILE_PHOTO);
       this.profileForm.controls['SOCIAL_MEDIA'].setValue(user.SOCIAL_MEDIA);
 
+      this.getCategory();
       this.getTags();
+      this.ref.detectChanges();
     })
   }
 
@@ -167,6 +183,7 @@ export class ProfileEditComponent implements OnInit {
     this.ngZone.run(() => {
       this.profileForm.controls['EMAIL'].setValue(user.EMAIL);
       this.profileForm.controls['CAMPAIGN_FUNDS'].setValue(0);
+      this.getCategory();
     })
   }
 

@@ -261,7 +261,7 @@
                                 </div>
                                 <div class="col-sm-8 text-secondary my-auto">
                                     <div class="form-group">
-                                        <ng-select class="form-control" [items]="categories" bindLabel="VALUE"
+                                        <ng-select (change)="getTags()" class="form-control" [items]="categories" bindLabel="VALUE"
                                             bindValue="VALUE" formControlName="CATEGORY">
                                         </ng-select>
                                     </div>
