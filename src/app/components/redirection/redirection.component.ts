@@ -36,6 +36,10 @@ export class RedirectionComponent implements OnInit {
             this.route.navigate([this.routeValue]);
             break;
         }
+      }else{
+        console.log('User Not type found', user.USER_TYPE);
+          this.routeValue = "/home";
+          this.route.navigate([this.routeValue]);
       }
     }, (error) => {
       console.log('Error not an existing user');

@@ -1,10 +1,10 @@
-.heading{
+h2.heading{
     text-align: center;
 }
-.top-up {
+div.top-up {
     text-align: center;
 }
-.credit{
+button.credit{
     background-color: #ff9900;
     color: #ffffff;
     margin: auto;
