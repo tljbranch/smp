@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/interfaces/User';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -8,24 +8,25 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-	
-	user: UserModel;
+
+  user: UserModel;
 
   page = {
-    title: 'Welcome Back ',
+    title: 'Welcome Back, ',
     subtitle: 'Your one stop marketing portal.',
     content: 'Region: ',
     image: 'https://miro.medium.com/max/2000/0*72mDyfTcxtjgErD6.jpg'
   }
 
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
-	  this.usersService.getCurrentUser().subscribe((data)=>{
+    this.usersService.getCurrentUser().subscribe((data) => {
       console.log(data);
       this.user = data;
-    })  
+      this.ref.detectChanges();
+    })
   }
 
 }
