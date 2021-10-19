@@ -11,6 +11,7 @@ import { CompanyComponent } from './components/company/company.component';
 import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { RedirectionComponent } from './components/redirection/redirection.component';
 import { CreateCampaignComponent } from './components/create-campaign/create-campaign.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 
 import {UserTypeSelectComponent} from './components/user-type-select/user-type-select.component';
@@ -91,6 +92,11 @@ const routes: Routes = [
   {
     path: 'checkout-complete',
     component : CheckoutCompleteComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'feedback',
+    component : FeedbackComponent,
     pathMatch: 'full'
   }
 ];
