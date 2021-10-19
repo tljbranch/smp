@@ -37,6 +37,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { NgxNavigationWithDataComponent } from "ngx-navigation-with-data";
 
 @NgModule({
   declarations: [
@@ -78,7 +79,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     NgSelectModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [NgxNavigationWithDataComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
