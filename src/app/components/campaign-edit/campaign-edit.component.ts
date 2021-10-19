@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { Campaign } from 'src/app/interfaces/Campaign';
+import { CampaignsService } from 'src/app/services/campaigns.service';
+import { ClassificationsService } from 'src/app/services/classifications.service';
 
 @Component({
   selector: 'app-campaign-edit',
@@ -7,9 +12,62 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CampaignEditComponent implements OnInit {
 
-  constructor() { }
+  classifications: any = { classifications: []};
+  tags: any[] = [];
+  categories: any[] = [];
+  campaigns: Campaign[];
+  campaign = new Campaign();
 
-  ngOnInit(): void {
+  constructor(public navCtrl: NgxNavigationWithDataComponent,private ngZone: NgZone,private classificationsService: ClassificationsService,private campaignService: CampaignsService,public router: Router) { 
+    console.log(this.navCtrl.get('id')); // it will console Virendra
+    console.log(this.navCtrl.data); // it will console whole data object here
   }
 
+  ngOnInit() {
+    this.refreshCampaigns();
+    this.getCategory();
+  }
+
+  refreshCampaigns() {
+    this.campaignService.getCampaign(this.navCtrl.get('id'))
+      .subscribe(data => {
+        console.log(data)
+        this.campaign = data;
+      })
+
+  }
+
+  updateCampaign() {
+    this.campaignService.updateCampaign(this.campaign)
+      .subscribe(data => {
+        console.log(data)
+        this.refreshCampaigns();
+        this.router.navigate(['/campaign']);
+      })
+  }
+
+  getCategory() {
+    this.ngZone.run(() => {
+      this.classificationsService.getCategories().subscribe((data: any) => {
+        data.classifications.forEach((element) => {
+          this.classifications = data;
+          if (element.TYPES === 'CATEGORY') {
+            this.categories.push(element)
+          }
+          console.log(this.classifications);
+        });
+      })
+    })
+  }
+   
+  // getTags() {
+  //   console.log(this.classifications);
+  //   this.ngZone.run(() => {
+  //     this.classifications.classifications.forEach((element) => {
+  //       if (element.TYPES === 'TAG' && element.PARENT === this.campaignsService.value.CATEGORY) {
+  //         this.tags.push(element);
+  //       }
+  //     });
+  //   });
+  // }
 }

@@ -1,19 +1,147 @@
 <div>{{projects.length}}</div>
 
-<h2>Testing Create Campaign!</h2>
 <nav>
-  <!-- <a routerLink = "/create-campaign">Click here to navigate to the Second component</a> -->
-  <button routerLink="/create-campaign" class="btn btn-primary">Create Campaign</button>
+  <button routerLink="/create-campaign" class="btn btn-primary float-end">Create Campaign</button>
 </nav>
+<br>
+&nbsp;
+&nbsp;
 
-<h2>My Campaign</h2>
-<!-- <ul class="Allcampaign">
-  <li *ngFor="let product of products">
-    <span class="badge">{{product.CAMPAIGNS_ID}}</span> {{product.CAMPAIGN_NAME}}
-  </li>
-</ul> -->
+<div class="container">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-12" *ngIf= "projects.length != 0">
+        <div class="card mb-3">
+          <div class="card-body"*ngFor="let p of projects| keyvalue">
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Campaign ID</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.CAMPAIGNS_ID}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Campaign Name</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.CAMPAIGN_NAME}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Descriptions</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.DESCRIPTIONS}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h6 class="mb-0">Category</h6>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.CATEGORY}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h6 class="mb-0">Tags</h6>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                <div class="widget-26-job-category bg-soft-warning">
+                  <i class="indicator bg-warning"></i>
+                  <span>Desktop</span>
+                </div>
+                <div class="widget-26-job-category bg-soft-success">
+                  <i class="indicator bg-success"></i>
+                  <span>Keyboard</span>
+                </div>
+                <div class="widget-26-job-category bg-soft-info">
+                  <i class="indicator bg-info"></i>
+                  <span>Audio</span>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Venue</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.VENUE}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h6 class="mb-0">Start Date</h6>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.START_DATE}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h6 class="mb-0">End Date</h6>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.END_DATE}}
+              </div>
+            </div>
+            <div class="row d-none">
+              <div class="col-sm-12">
+                <a class="btn btn-info " target="__blank"
+                  href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+              </div>
+            </div>
+            &nbsp;
+            <!-- <nav  *ngIf="user.USER_TYPE==='Company'"> -->
+              <nav>
+              <button class="btn btn-primary float-end" (click)="navigateToEdit(p.value.CAMPAIGNS_ID)">Edit Campaign</button>&nbsp;
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<ul *ngFor="let p of projects| keyvalue">
-  <li>{{p.value.CAMPAIGNS_ID}}/{{p.value.CAMPAIGN_NAME}}</li>
-</ul>
+  </div>
+</div>
+
+<!-- <table class='table'>
+  <thead>
+    <tr>
+      <th>CAMPAIGN_ID</th>
+      <th>Campaign Name</th>
+      <th>Descriptions</th>
+      <th>Tags</th>
+      <th>Category</th>
+      <th>Venue</th>
+      <th>Company ID</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+     <div *ngIf="products.length === 0"></div> 
+
+    <tr *ngFor="let p of projects| keyvalue">
+      <td>{{p.value.CAMPAIGNS_ID}}</td>
+      <td>{{p.value.CAMPAIGN_NAME}}</td>
+      <td>{{p.value.DESCRIPTIONS}}</td>
+      <td>{{p.value.TAGS}}</td>
+      <td>{{p.value.CATEGORY}}</td>
+      <td>{{p.value.VENUE}}</td>
+      <td>{{p.value.COMPANIES_ID}}</td>
+      <td>{{p.value.START_DATE}}</td>
+      <td>{{p.value.END_DATE}}</td>
+    </tr>
+  </tbody>
+</table> -->
 

@@ -1,7 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { CampaignsService } from '../../services/campaigns.service';
-import { Campaign } from '../../interfaces/Campaign';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { UsersService } from 'src/app/services/users.service';
+import { UserModel } from 'src/app/interfaces/User';
+
+
+
 
 @Component({
   selector: 'app-campaign',
@@ -11,8 +16,10 @@ import { Campaign } from '../../interfaces/Campaign';
 export class CampaignComponent implements OnInit {
 
   projects = [];
+  user: UserModel;
+  
 
-  constructor(private campaignsService: CampaignsService,private ref: ChangeDetectorRef) { }
+  constructor(private campaignsService: CampaignsService, private navCtrl: NgxNavigationWithDataComponent,private userService: UsersService,private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.campaignsService.getCampaigns().subscribe(
@@ -22,6 +29,17 @@ export class CampaignComponent implements OnInit {
       },
       () => console.log('error')
     );
+
+    this.userService.getCurrentUser().subscribe(data => {
+      this.user = data
+      console.log(data);
+      this.ref.detectChanges();
+  })
   }
+
+  navigateToEdit(id: string) {
+    this.navCtrl.navigate('/campaign-edit', {id:id});
+   }
+   
 
 }

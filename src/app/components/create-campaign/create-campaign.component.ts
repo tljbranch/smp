@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CampaignsService } from '../../services/campaigns.service';
 import { Campaign } from '../../interfaces/Campaign';
+import { Router } from '@angular/router';
 
 
 
@@ -16,7 +17,7 @@ export class CreateCampaignComponent implements OnInit {
   campaigns: Campaign[];
   campaign = new Campaign();
 
-  constructor(private campaignService: CampaignsService) { }
+  constructor(private campaignService: CampaignsService,public router: Router) { }
 
   ngOnInit() {
     this.refreshCampaigns();
@@ -32,10 +33,13 @@ export class CreateCampaignComponent implements OnInit {
   }
 
   addCampaign() {
+    const generateId = Date.now().toString();
+    this.campaign.CAMPAIGNS_ID = generateId;
     this.campaignService.addCampaign(this.campaign)
       .subscribe(data => {
         console.log(data)
         this.refreshCampaigns();
+        this.router.navigate(['/campaign']);
       })
   }
 
