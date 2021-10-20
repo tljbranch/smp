@@ -30,8 +30,9 @@
 
                             <div class="form-group">
                                 <label for="Category">Category</label>
-                                <ng-select (change)="getTags()" class="form-control" [items]="categories"
-                                    bindLabel="VALUE" bindValue="VALUE" [(ngModel)]="campaign.CATEGORY" name="Category">
+                                <ng-select (change)="getTags()" class="form-control" [items]="categories" bindLabel="VALUE"
+                                    bindValue="VALUE" required [(ngModel)]="campaign.CATEGORY"
+                                    name="Category">
                                 </ng-select>
                             </div><br>
 

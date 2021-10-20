@@ -17,17 +17,26 @@ export class CreateCampaignComponent implements OnInit {
   title = 'Create Campaign';
   campaigns: Campaign[];
   campaign = new Campaign();
-  classifications: any = { classifications: []};
-  tags: any[] = [];
-  categories: any[] = [];
+  classifications: any = { classifications: [] };
+  tags: any[] = [{}];
+  categories: any[] = [{}];
 
-  constructor(private campaignService: CampaignsService,public router: Router,private ref: ChangeDetectorRef, private ngZone: NgZone,private classificationsService: ClassificationsService) { }
+  constructor(private campaignService: CampaignsService, public router: Router, private ref: ChangeDetectorRef, private ngZone: NgZone, private classificationsService: ClassificationsService) { }
 
   ngOnInit() {
     this.ngZone.run(() => {
       this.getClassifications();
       this.refreshCampaigns();
     })
+    this.campaign.CAMPAIGNS_ID = '';
+    this.campaign.CAMPAIGN_NAME = '';
+    this.campaign.CATEGORY = '';
+    this.campaign.TAGS = [];
+    this.campaign.COMPANIES_ID = '';
+    this.campaign.DESCRIPTIONS = '';
+    this.campaign.START_DATE = null;
+    this.campaign.END_DATE = null;
+    this.campaign.VENUE = '';
   }
 
   refreshCampaigns() {
@@ -60,30 +69,34 @@ export class CreateCampaignComponent implements OnInit {
     });
   }
 
-  async getCategory() {
-    if(this.categories.length > 0){
-      this.categories = [];
-    }
-    await this.classifications.classifications.forEach((element) => {
-      if (element.TYPES === 'CATEGORY') {
-        this.categories.push(element);
+  getCategory() {
+    this.ngZone.run(() => {
+      if (this.categories.length > 0) {
+        this.categories = [];
       }
-    }); console.log(this.categories);
-    this.ref.detectChanges();
-}
-
-async getTags() {
-    if(this.tags.length > 0){
-      if (this.campaign.CATEGORY !== this.tags[0].PARENT) {
-        this.campaign.TAGS = [];
-      }
-      this.tags = [];
-    }
-    await this.classifications.classifications.forEach((element) => {
-      if (element.TYPES === 'TAG' && element.PARENT === this.campaign.CATEGORY) {
-        this.tags.push(element);
-      }
+      this.classifications.classifications.forEach((element) => {
+        if (element.TYPES === 'CATEGORY') {
+          this.categories.push(element);
+        }
+      });
+      this.ref.detectChanges();
     });
-    this.ref.detectChanges();
-}
+  }
+
+  getTags() {
+    this.ngZone.run(() => {
+      if (this.tags.length > 0) {
+        if (this.campaign.CATEGORY !== this.tags[0].PARENT) {
+          this.campaign.TAGS = [];
+        }
+        this.tags = [];
+      }
+      this.classifications.classifications.forEach((element) => {
+        if (element.TYPES === 'TAG' && element.PARENT === this.campaign.CATEGORY) {
+          this.tags.push(element);
+        }
+      });
+      this.ref.detectChanges();
+    });
+  }
 }
