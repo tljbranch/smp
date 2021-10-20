@@ -37,6 +37,7 @@ export class CreateCampaignComponent implements OnInit {
     this.campaign.START_DATE = null;
     this.campaign.END_DATE = null;
     this.campaign.VENUE = '';
+    this.campaign.STATUS = true;
   }
 
   refreshCampaigns() {

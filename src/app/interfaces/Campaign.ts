@@ -8,4 +8,5 @@ export class Campaign{
     COMPANIES_ID?: string;
     START_DATE?: number;
     END_DATE?: number;
+    STATUS?: boolean;
 }
