@@ -1,8 +1,8 @@
 <mat-card>
-    <div>
+    <div *ngIf="user">
         <mat-card-header>
             <mat-card-title>
-                <h1>{{page.title}}{{user.FULL_NAME}}{{user.COMPANY_NAME}}</h1>
+                <h1>{{page.title}}<span *ngIf="user.FULL_NAME">{{user.FULL_NAME}}</span><span *ngIf="user.COMPANY_NAME">{{user.COMPANY_NAME}}</span></h1>
             </mat-card-title>
             <mat-card-subtitle>{{page.subtitle}}<br>{{page.content}}{{user.NATIONALITY}}</mat-card-subtitle>
         </mat-card-header>
