@@ -1,17 +1,15 @@
-<!-- <nav  *ngIf="user.USER_TYPE==='Company'"> -->
-<nav>
-  <button class="btn btn-primary float-end" (click)="navigateToCreate()">Create Campaign</button>
-</nav>
-<br>
 &nbsp;
+<div *ngIf="user.USER_TYPE==='Company'">
+  <button class="btn btn-primary float-end" (click)="navigateToCreate()" style="margin-right: 1.5rem;">Create Campaign</button>
+</div>
 &nbsp;
 
 <div class="container">
   <div class="main-body">
     <div class="row gutters-sm">
-      <div class="col-md-12" *ngIf= "projects.length != 0">
-        <div class="card mb-3"*ngFor="let p of projects| keyvalue">
-          <div class="card-body" *ngIf= "p.value.STATUS == true" >
+      <div class="col-md-12" *ngIf="projects.length != 0">
+        <div class="card mb-3" *ngFor="let p of projects| keyvalue">
+          <div class="card-body" *ngIf="(p.value.STATUS == true)&&(user.USER_TYPE ==='Influencer')">
             <div class="row h-100">
               <div class="col-sm-3 my-auto">
                 <h5 class="mb-0">Campaign ID</h5>
@@ -41,7 +39,7 @@
             <hr>
             <div class="row h-100">
               <div class="col-sm-3 my-auto">
-                <h6 class="mb-0">Category</h6>
+                <h5 class="mb-0">Category</h5>
               </div>
               <div class="col-sm-9 text-secondary my-auto">
                 {{p.value.CATEGORY}}
@@ -50,7 +48,7 @@
             <hr>
             <div class="row h-100">
               <div class="col-sm-3 my-auto">
-                <h6 class="mb-0">Tags</h6>
+                <h5 class="mb-0">Tags</h5>
               </div>
               <div class="col-sm-9 text-secondary my-auto">
                 <div class="widget-26-job-category bg-soft-warning" *ngFor="let tag of p.value.TAGS">
@@ -60,26 +58,6 @@
               </div>
             </div>
             <hr>
-            <!-- <div class="row h-100">
-              <div class="col-sm-3 my-auto">
-                <h6 class="mb-0">Tags</h6>
-              </div>
-              <div class="col-sm-9 text-secondary my-auto">
-                <div class="widget-26-job-category bg-soft-warning">
-                  <i class="indicator bg-warning"></i>
-                  <span>Desktop</span>
-                </div>
-                <div class="widget-26-job-category bg-soft-success">
-                  <i class="indicator bg-success"></i>
-                  <span>Keyboard</span>
-                </div>
-                <div class="widget-26-job-category bg-soft-info">
-                  <i class="indicator bg-info"></i>
-                  <span>Audio</span>
-                </div>
-              </div>
-            </div>
-            <hr> -->
             <div class="row h-100">
               <div class="col-sm-3 my-auto">
                 <h5 class="mb-0">Venue</h5>
@@ -91,7 +69,7 @@
             <hr>
             <div class="row h-100">
               <div class="col-sm-3 my-auto">
-                <h6 class="mb-0">Start Date</h6>
+                <h5 class="mb-0">Start Date</h5>
               </div>
               <div class="col-sm-9 text-secondary my-auto">
                 {{p.value.START_DATE}}
@@ -100,60 +78,107 @@
             <hr>
             <div class="row h-100">
               <div class="col-sm-3 my-auto">
-                <h6 class="mb-0">End Date</h6>
+                <h5 class="mb-0">End Date</h5>
               </div>
               <div class="col-sm-9 text-secondary my-auto">
                 {{p.value.END_DATE}}
               </div>
             </div>
             <hr>
-            <!-- <div class="row d-none">
-              <div class="col-sm-12">
-                <a class="btn btn-info " target="__blank"
-                  href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-              </div>
-            </div> -->
             &nbsp;
-            <!-- <nav  *ngIf="user.USER_TYPE==='Company'"> -->
-              <nav>
-              <button class="btn btn-primary float-end" (click)="navigateToEdit(p.value.CAMPAIGNS_ID)">Edit Campaign</button>&nbsp;
+            <nav>
+              <button class="btn btn-primary float-end" (click)="navigateToEdit(p.value.CAMPAIGNS_ID)">Edit
+                Campaign</button>&nbsp;
             </nav><br>
           </div>
+          <div class="card-body" *ngIf="(p.value.STATUS == true)&&(user.USER_TYPE ==='Company')&&(user.COMPANY_NAME === p.value.COMPANIES_ID)">
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Campaign ID</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.CAMPAIGNS_ID}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Campaign Name</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.CAMPAIGN_NAME}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Descriptions</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.DESCRIPTIONS}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Category</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.CATEGORY}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Tags</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                <div class="widget-26-job-category bg-soft-warning" *ngFor="let tag of p.value.TAGS">
+                  <i class="indicator bg-warning"></i>
+                  <span>{{tag}}</span>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Venue</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.VENUE}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">Start Date</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.START_DATE}}
+              </div>
+            </div>
+            <hr>
+            <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h5 class="mb-0">End Date</h5>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
+                {{p.value.END_DATE}}
+              </div>
+            </div>
+            <hr>
+            &nbsp;
+            <nav *ngIf="user.USER_TYPE==='Company'">
+              <button class="btn btn-primary float-end" (click)="navigateToEdit(p.value.CAMPAIGNS_ID)">Edit
+                Campaign</button>&nbsp;
+            </nav><br>
+          </div>
+
+
+
         </div>
       </div>
     </div>
 
   </div>
 </div>
-
-<!-- <table class='table'>
-  <thead>
-    <tr>
-      <th>CAMPAIGN_ID</th>
-      <th>Campaign Name</th>
-      <th>Descriptions</th>
-      <th>Tags</th>
-      <th>Category</th>
-      <th>Venue</th>
-      <th>Company ID</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-    </tr>
-  </thead>
-  <tbody>
-     <div *ngIf="products.length === 0"></div> 
-
-    <tr *ngFor="let p of projects| keyvalue">
-      <td>{{p.value.CAMPAIGNS_ID}}</td>
-      <td>{{p.value.CAMPAIGN_NAME}}</td>
-      <td>{{p.value.DESCRIPTIONS}}</td>
-      <td>{{p.value.TAGS}}</td>
-      <td>{{p.value.CATEGORY}}</td>
-      <td>{{p.value.VENUE}}</td>
-      <td>{{p.value.COMPANIES_ID}}</td>
-      <td>{{p.value.START_DATE}}</td>
-      <td>{{p.value.END_DATE}}</td>
-    </tr>
-  </tbody>
-</table> -->
-

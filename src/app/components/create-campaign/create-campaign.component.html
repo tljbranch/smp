@@ -30,8 +30,8 @@
 
                             <div class="form-group">
                                 <label for="Category">Category</label>
-                                <ng-select (change)="getTags()" class="form-control" [items]="categories" bindLabel="VALUE"
-                                    bindValue="VALUE" required [(ngModel)]="campaign.CATEGORY"
+                                <ng-select (change)="getTags()" class="form-control" [items]="categories"
+                                    bindLabel="VALUE" bindValue="VALUE" required [(ngModel)]="campaign.CATEGORY"
                                     name="Category">
                                 </ng-select>
                             </div><br>
@@ -39,8 +39,7 @@
                             <div class="form-group">
                                 <label for="Tags">Tags</label>
                                 <ng-select class="form-control" [multiple]=true [items]="tags" bindLabel="VALUE"
-                                    bindValue="VALUE" required [(ngModel)]="campaign.TAGS"
-                                    name="Tags">
+                                    bindValue="VALUE" required [(ngModel)]="campaign.TAGS" name="Tags">
                                 </ng-select>
                             </div><br>
 
@@ -51,8 +50,8 @@
                             </div><br>
                             <div class="form-group">
                                 <label for="CompanyID">Company ID</label>
-                                <input type="text" class="form-control" id="CompanyID" required
-                                    [(ngModel)]="campaign.COMPANIES_ID" name="CompanyID">
+                                <input type="text" class="form-control" id="CompanyID" required readonly
+                                    [(ngModel)]="user.COMPANY_NAME" name="CompanyID">
                             </div><br>
                             <div class="form-group">
                                 <label for="startDate">Start Date</label>
@@ -65,6 +64,16 @@
                                 <input type="date" class="form-control" id="endDate" placeholder="DD/MM/YYYY" required
                                     [(ngModel)]="campaign.END_DATE" name="endDate">
                             </div><br>
+                            <div class="form-group">
+                                <label for="campaignFund">Campaign Fund</label>
+                                <input type="text" class="form-control" id="campaignFund" required readonly
+                                    [(ngModel)]="user.CAMPAIGN_FUNDS" name="campaignFund">
+                            </div><br>
+                            <nav  *ngIf="user.CAMPAIGN_FUNDS < 5">
+                                Please Top-up.  
+                                <button class="btn btn-outline-danger" (click)="navigateToFunds()" style = "margin-bottom: 1rem;">Top Up Campaign Funds</button>
+                            </nav>
+                            &nbsp;
                             <button type="submit" class="btn btn-primary"
                                 [disabled]="!createForm.form.valid">Submit</button>
                             &nbsp;

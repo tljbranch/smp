@@ -13,7 +13,7 @@
                                     <div class="form-group">
                                         <!-- <input type="text" class="form-control" id="name"> -->
                                         <input type="text" class="form-control" id="name" required
-                                    [(ngModel)]="campaign.CAMPAIGN_NAME" name="name">
+                                            [(ngModel)]="campaign.CAMPAIGN_NAME" name="name">
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
                                     <div class="form-group">
                                         <!-- <input type="text" class="form-control" id="name"> -->
                                         <input type="text" class="form-control" id="description" required
-                                    [(ngModel)]="campaign.DESCRIPTIONS" name="description">
+                                            [(ngModel)]="campaign.DESCRIPTIONS" name="description">
                                     </div>
                                 </div>
                             </div>
@@ -37,9 +37,9 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
-                                        <!-- <input type="text" class="form-control" id="name"> -->
-                                        <input type="text" class="form-control" id="tags" required
-                                    [(ngModel)]="campaign.TAGS" name="tags">
+                                        <ng-select class="form-control" [multiple]=true [items]="tags" bindLabel="VALUE"
+                                            bindValue="VALUE" required [(ngModel)]="campaign.TAGS" name="Tags">
+                                        </ng-select>
                                     </div>
                                 </div>
                             </div>
@@ -50,9 +50,10 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
-                                        <!-- <input type="text" class="form-control" id="name"> -->
-                                        <input type="text" class="form-control" id="Category" required
-                                    [(ngModel)]="campaign.CATEGORY" name="Category">
+                                        <ng-select (change)="getTags()" class="form-control" [items]="categories"
+                                            bindLabel="VALUE" bindValue="VALUE" required [(ngModel)]="campaign.CATEGORY"
+                                            name="Category">
+                                        </ng-select>
                                     </div>
                                 </div>
                             </div>
@@ -65,20 +66,20 @@
                                     <div class="form-group">
                                         <!-- <input type="text" class="form-control" id="name"> -->
                                         <input type="text" class="form-control" id="Venue" required
-                                    [(ngModel)]="campaign.VENUE" name="Venue">
+                                            [(ngModel)]="campaign.VENUE" name="Venue">
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div class="row h-100">
                                 <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">CompanyID</h6>
+                                    <h6 class="mb-0">Company Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
                                         <!-- <input type="text" class="form-control" id="name"> -->
-                                        <input type="text" class="form-control" id="CompanyID" required
-                                    [(ngModel)]="campaign.COMPANIES_ID" name="CompanyID">
+                                        <input type="text" class="form-control" id="CompanyID" required readonly
+                                            [(ngModel)]="campaign.COMPANIES_ID" name="CompanyID">
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +91,7 @@
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
                                         <input type="date" class="form-control" id="startDate" required
-                                    [(ngModel)]="campaign.START_DATE" name="startDate">
+                                            [(ngModel)]="campaign.START_DATE" name="startDate">
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +103,7 @@
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
                                         <input type="date" class="form-control" id="endDate" required
-                                    [(ngModel)]="campaign.END_DATE" name="endDate">
+                                            [(ngModel)]="campaign.END_DATE" name="endDate">
                                     </div>
                                 </div>
                             </div>
@@ -110,10 +111,11 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <!-- <button type="button" class="btn btn-success float-end">Save</button> -->
+                                    <button type="button" class="btn btn-danger" (click)="navigateToCampaignDel()">Delete</button>
                                     <button type="save" class="btn btn-primary float-end"
                                         [disabled]="!createForm.form.valid">Save</button>
                                     &nbsp;
-                                    <button type="button" class="btn btn-outline-danger"
+                                    <button type="button" class="btn btn-outline-danger float-end"  style = "margin-right: 1rem;"
                                         onClick="window.location.href='/campaign'">Cancel</button>
                                     &nbsp;
                                 </div>

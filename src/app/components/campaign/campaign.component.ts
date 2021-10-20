@@ -16,10 +16,11 @@ import { UserModel } from 'src/app/interfaces/User';
 export class CampaignComponent implements OnInit {
 
   projects = [];
-  user: UserModel;
+  user: UserModel = {USER_TYPE:" "};
   
 
-  constructor(private campaignsService: CampaignsService, private navCtrl: NgxNavigationWithDataComponent,private userService: UsersService,private ref: ChangeDetectorRef,private ngZone: NgZone) { }
+  constructor(private campaignsService: CampaignsService, private navCtrl: NgxNavigationWithDataComponent,
+    private userService: UsersService,private ref: ChangeDetectorRef,private ngZone: NgZone) { }
 
   ngOnInit() {
     this.ngZone.run(() => {

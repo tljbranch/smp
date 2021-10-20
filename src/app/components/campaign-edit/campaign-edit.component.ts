@@ -12,15 +12,15 @@ import { ClassificationsService } from 'src/app/services/classifications.service
 })
 export class CampaignEditComponent implements OnInit {
 
-  classifications: any = { classifications: []};
+  classifications: any = { classifications: [] };
   tags: any[] = [];
   categories: any[] = [];
   campaigns: Campaign[];
   campaign = new Campaign();
-  
 
-  constructor(public navCtrl: NgxNavigationWithDataComponent,private ngZone: NgZone,private classificationsService: ClassificationsService,
-    private campaignService: CampaignsService,public router: Router,private ref: ChangeDetectorRef) { 
+
+  constructor(public navCtrl: NgxNavigationWithDataComponent, private ngZone: NgZone, private classificationsService: ClassificationsService,
+    private campaignService: CampaignsService, public router: Router, private ref: ChangeDetectorRef) {
     console.log(this.navCtrl.get('id')); // it will console Virendra
     console.log(this.navCtrl.data); // it will console whole data object here
   }
@@ -48,9 +48,16 @@ export class CampaignEditComponent implements OnInit {
       })
   }
 
+  navigateToCampaignDel() {
+    this.ngZone.run(() => {
+      this.campaign.STATUS = false;
+      this.updateCampaign();
+    })
+  }
+
 
   async getCategory() {
-    if(this.categories.length > 0){
+    if (this.categories.length > 0) {
       this.categories = [];
     }
     await this.classifications.classifications.forEach((element) => {
@@ -59,10 +66,10 @@ export class CampaignEditComponent implements OnInit {
       }
     });
     this.ref.detectChanges();
-}
+  }
 
-async getTags() {
-    if(this.tags.length > 0){
+  async getTags() {
+    if (this.tags.length > 0) {
       if (this.campaign.CATEGORY !== this.tags[0].PARENT) {
         this.campaign.TAGS = [];
       }
@@ -74,5 +81,5 @@ async getTags() {
       }
     });
     this.ref.detectChanges();
-}
+  }
 }
