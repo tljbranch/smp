@@ -54,6 +54,18 @@
                 <h6 class="mb-0">Tags</h6>
               </div>
               <div class="col-sm-9 text-secondary my-auto">
+                <div class="widget-26-job-category bg-soft-warning" *ngFor="let tag of p.value.TAGS">
+                  <i class="indicator bg-warning"></i>
+                  <span>{{tag}}</span>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- <div class="row h-100">
+              <div class="col-sm-3 my-auto">
+                <h6 class="mb-0">Tags</h6>
+              </div>
+              <div class="col-sm-9 text-secondary my-auto">
                 <div class="widget-26-job-category bg-soft-warning">
                   <i class="indicator bg-warning"></i>
                   <span>Desktop</span>
@@ -68,7 +80,7 @@
                 </div>
               </div>
             </div>
-            <hr>
+            <hr> -->
             <div class="row h-100">
               <div class="col-sm-3 my-auto">
                 <h5 class="mb-0">Venue</h5>
@@ -95,17 +107,19 @@
                 {{p.value.END_DATE}}
               </div>
             </div>
-            <div class="row d-none">
+            <hr>
+            <!-- <div class="row d-none">
               <div class="col-sm-12">
                 <a class="btn btn-info " target="__blank"
                   href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
               </div>
-            </div>
+            </div> -->
             &nbsp;
             <!-- <nav  *ngIf="user.USER_TYPE==='Company'"> -->
               <nav>
               <button class="btn btn-primary float-end" (click)="navigateToEdit(p.value.CAMPAIGNS_ID)">Edit Campaign</button>&nbsp;
-            </nav>
+            </nav><br>
+            <hr>
           </div>
         </div>
       </div>

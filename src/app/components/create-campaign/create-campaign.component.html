@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="row h-100">
                         <h1 class="card-title">{{title}}</h1>
-                        <form (ngSubmit)="addCampaign()" #createForm="ngForm" >
+                        <form (ngSubmit)="addCampaign()" #createForm="ngForm">
                             <div class="form-group">
                                 <label for="name">Campaign Name:</label>
                                 <input type="text" class="form-control" id="name" required
@@ -13,11 +13,11 @@
                                 <!-- <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel"> -->
                             </div><br>
                             <div class="form-group">
-                                <label for="Descriptions">Campaign Description</label>
+                                <label for="Descriptions">Campaign Description:</label>
                                 <input type="text" class="form-control" id="Descriptions" required
                                     [(ngModel)]="campaign.DESCRIPTIONS" name="Descriptions">
                             </div><br>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="Tags">Tags</label>
                                 <input type="text" class="form-control" id="Tags" required [(ngModel)]="campaign.TAGS"
                                     name="Tags">
@@ -26,7 +26,23 @@
                                 <label for="Category">Category</label>
                                 <input type="text" class="form-control" id="Category" required
                                     [(ngModel)]="campaign.CATEGORY" name="Category">
+                            </div><br> -->
+
+                            <div class="form-group">
+                                <label for="Category">Category</label>
+                                <ng-select (change)="getTags()" class="form-control" [items]="categories"
+                                    bindLabel="VALUE" bindValue="VALUE" [(ngModel)]="campaign.CATEGORY" name="Category">
+                                </ng-select>
                             </div><br>
+
+                            <div class="form-group">
+                                <label for="Tags">Tags</label>
+                                <ng-select class="form-control" [multiple]=true [items]="tags" bindLabel="VALUE"
+                                    bindValue="VALUE" required [(ngModel)]="campaign.TAGS"
+                                    name="Tags">
+                                </ng-select>
+                            </div><br>
+
                             <div class="form-group">
                                 <label for="Venue">Venue</label>
                                 <input type="text" class="form-control" id="Venue" required [(ngModel)]="campaign.VENUE"

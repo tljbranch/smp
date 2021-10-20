@@ -22,6 +22,7 @@ export class CampaignComponent implements OnInit {
   constructor(private campaignsService: CampaignsService, private navCtrl: NgxNavigationWithDataComponent,private userService: UsersService,private ref: ChangeDetectorRef,private ngZone: NgZone) { }
 
   ngOnInit() {
+    this.ngZone.run(() => {
     this.campaignsService.getCampaigns().subscribe(
       (response: any ) => {
         console.log(response);
@@ -35,7 +36,7 @@ export class CampaignComponent implements OnInit {
       console.log(data);
       this.ref.detectChanges();
   })
-  }
+  })}
 
   navigateToEdit(id: string) {
     this.ngZone.run(() => {
