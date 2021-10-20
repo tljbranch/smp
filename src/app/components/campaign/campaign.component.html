@@ -86,10 +86,6 @@
             </div>
             <hr>
             &nbsp;
-            <nav>
-              <button class="btn btn-primary float-end" (click)="navigateToEdit(p.value.CAMPAIGNS_ID)">Edit
-                Campaign</button>&nbsp;
-            </nav><br>
           </div>
           <div class="card-body" *ngIf="(p.value.STATUS == true)&&(user.USER_TYPE ==='Company')&&(user.COMPANY_NAME === p.value.COMPANIES_ID)">
             <div class="row h-100">
