@@ -26,7 +26,6 @@ export class CampaignComponent implements OnInit {
     this.ngZone.run(() => {
     this.campaignsService.getCampaigns().subscribe(
       (response: any ) => {
-        console.log(response);
         this.projects = response.campaigns; // add .data here.
       },
       () => console.log('error')
@@ -34,7 +33,6 @@ export class CampaignComponent implements OnInit {
 
     this.userService.getCurrentUser().subscribe(data => {
       this.user = data
-      console.log(data);
       this.ref.detectChanges();
   })
   })}

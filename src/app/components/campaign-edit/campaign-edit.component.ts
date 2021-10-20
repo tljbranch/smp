@@ -21,8 +21,6 @@ export class CampaignEditComponent implements OnInit {
 
   constructor(public navCtrl: NgxNavigationWithDataComponent, private ngZone: NgZone, private classificationsService: ClassificationsService,
     private campaignService: CampaignsService, public router: Router, private ref: ChangeDetectorRef) {
-    console.log(this.navCtrl.get('id')); // it will console Virendra
-    console.log(this.navCtrl.data); // it will console whole data object here
   }
 
   ngOnInit() {
@@ -33,7 +31,6 @@ export class CampaignEditComponent implements OnInit {
   refreshCampaigns() {
     this.campaignService.getCampaign(this.navCtrl.get('id'))
       .subscribe(data => {
-        console.log(data)
         this.campaign = data;
       })
 
@@ -42,7 +39,6 @@ export class CampaignEditComponent implements OnInit {
   updateCampaign() {
     this.campaignService.updateCampaign(this.campaign)
       .subscribe(data => {
-        console.log(data)
         this.refreshCampaigns();
         this.router.navigate(['/campaign']);
       })

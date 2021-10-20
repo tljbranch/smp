@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 import { CampaignComponent } from './campaign.component';
 
@@ -8,7 +11,9 @@ describe('CampaignComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CampaignComponent ]
+      imports: [ HttpClientTestingModule, RouterTestingModule, RouterTestingModule ],
+      declarations: [ CampaignComponent ],
+      providers: [ NgxNavigationWithDataComponent ]
     })
     .compileComponents();
   });
