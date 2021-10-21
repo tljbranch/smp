@@ -64,7 +64,6 @@ export class UsersService {
         return of(this.convertToUserModel(input));
       }));
     }else if(user.USER_TYPE === 'Company'){
-      console.log("World");
       return this.companiesService.addCompany(user).pipe(switchMap((input:any)=>{
         return of(this.convertToUserModel(input));
       }));

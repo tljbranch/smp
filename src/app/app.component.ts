@@ -21,8 +21,7 @@ export class AppComponent {
     onAuthUIStateChange((authState, authData) => {
       this.authState = authState;
       this.user = authData as CognitoUserInterface;
-      this.usersService.getCurrentUser().subscribe(data => {
-        console.log(data);
+      this.usersService.getCurrentUser().subscribe((data: any) => {
         if (data.USER_TYPE === "Company") {
           this.isCompany = true;
           this.displayName = data.COMPANY_NAME;

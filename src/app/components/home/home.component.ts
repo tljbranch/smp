@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.usersService.getCurrentUser().subscribe((data) => {
-      console.log(data);
       this.user = data;
       this.ref.detectChanges();
     })

@@ -189,7 +189,6 @@ export class ProfileEditComponent implements OnInit {
 
   addForm() {
     if (this.profileForm.value.USER_TYPE === "Company") {
-      console.log(this.profileForm.get('USER_TYPE').value === 'Company');
       let company = {
         EMAIL: this.profileForm.value.EMAIL,
         USER_TYPE: this.profileForm.value.USER_TYPE,

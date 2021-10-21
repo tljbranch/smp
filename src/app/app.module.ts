@@ -18,10 +18,10 @@ import { CompanyComponent } from './components/company/company.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { RedirectionComponent } from './components/redirection/redirection.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UserTypeSelectComponent } from './components/user-type-select/user-type-select.component';
 import { HttpClientModule } from '@angular/common/http';
-import {NgxStripeModule} from 'ngx-stripe';
+import { NgxStripeModule } from 'ngx-stripe';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CheckoutSuccessComponent } from './components/checkout-success/checkout-success.component';
 import { CheckoutCancelComponent } from './components/checkout-cancel/checkout-cancel.component';
@@ -37,6 +37,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { NgxNavigationWithDataComponent } from "ngx-navigation-with-data";
 
 @NgModule({
   declarations: [
@@ -78,7 +79,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     NgSelectModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [NgxNavigationWithDataComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,31 +4,29 @@
             <div class="col-md-12">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <form>
+                        <form (ngSubmit)="updateCampaign()" #createForm="ngForm">
                             <div class="row h-100">
                                 <div class="col-sm-3 my-auto">
                                     <h6 class="mb-0">Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" value="Gigabyte RTX 3060 Ti Asia Launch">
+                                        <!-- <input type="text" class="form-control" id="name"> -->
+                                        <input type="text" class="form-control" id="name" required
+                                            [(ngModel)]="campaign.CAMPAIGN_NAME" name="name">
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div class="row h-100">
                                 <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Category</h6>
+                                    <h6 class="mb-0">Description</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
-                                        <select class="form-control" id="category">
-                                          <option selected="selected">Computers</option>
-                                          <option>Cars</option>
-                                          <option>Motocycle</option>
-                                          <option>Property</option>
-                                          <option>Gaming</option>
-                                        </select>
+                                        <!-- <input type="text" class="form-control" id="name"> -->
+                                        <input type="text" class="form-control" id="description" required
+                                            [(ngModel)]="campaign.DESCRIPTIONS" name="description">
                                     </div>
                                 </div>
                             </div>
@@ -39,30 +37,49 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
-                                        <select multiple class="form-control" id="tags">
-                                          <option selected="selected">Desktop</option>
-                                          <option selected="selected">Keyboard</option>
-                                          <option selected="selected">Audio</option>
-                                          <option>Overclocking</option>
-                                          <option>Laptop</option>
-                                        </select>
-                                      </div>
+                                        <ng-select class="form-control" [multiple]=true [items]="tags" bindLabel="VALUE"
+                                            bindValue="VALUE" required [(ngModel)]="campaign.TAGS" name="Tags">
+                                        </ng-select>
+                                    </div>
                                 </div>
                             </div>
                             <hr>
                             <div class="row h-100">
                                 <div class="col-sm-3 my-auto">
-                                    <h6 class="mb-0">Location</h6>
+                                    <h6 class="mb-0">Category</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
-                                        <select class="form-control" id="location">
-                                          <option selected="selected">Singapore</option>
-                                          <option>Malaysia</option>
-                                          <option>Indonesia</option>
-                                          <option>Thailand</option>
-                                          <option>Taiwan</option>
-                                        </select>
+                                        <ng-select (change)="getTags()" class="form-control" [items]="categories"
+                                            bindLabel="VALUE" bindValue="VALUE" required [(ngModel)]="campaign.CATEGORY"
+                                            name="Category">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row h-100">
+                                <div class="col-sm-3 my-auto">
+                                    <h6 class="mb-0">Venue</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <!-- <input type="text" class="form-control" id="name"> -->
+                                        <input type="text" class="form-control" id="Venue" required
+                                            [(ngModel)]="campaign.VENUE" name="Venue">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row h-100">
+                                <div class="col-sm-3 my-auto">
+                                    <h6 class="mb-0">Company Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary my-auto">
+                                    <div class="form-group">
+                                        <!-- <input type="text" class="form-control" id="name"> -->
+                                        <input type="text" class="form-control" id="CompanyID" required readonly
+                                            [(ngModel)]="campaign.COMPANIES_ID" name="CompanyID">
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +90,8 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
-                                        <input type="date" class="form-control" id="startDate" value="2021-12-31">
+                                        <input type="date" class="form-control" id="startDate" required
+                                            [(ngModel)]="campaign.START_DATE" name="startDate">
                                     </div>
                                 </div>
                             </div>
@@ -84,15 +102,22 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary my-auto">
                                     <div class="form-group">
-                                        <input type="date" class="form-control" id="endDate" value="2021-12-31">
+                                        <input type="date" class="form-control" id="endDate" required
+                                            [(ngModel)]="campaign.END_DATE" name="endDate">
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button type="button" class="btn btn-success float-end">Save</button>
-                                    <button type="button" class="btn btn-light float-start">Cancel</button>
+                                    <!-- <button type="button" class="btn btn-success float-end">Save</button> -->
+                                    <button type="button" class="btn btn-danger" (click)="navigateToCampaignDel()">Delete</button>
+                                    <button type="save" class="btn btn-primary float-end"
+                                        [disabled]="!createForm.form.valid">Save</button>
+                                    &nbsp;
+                                    <button type="button" class="btn btn-outline-danger float-end"  style = "margin-right: 1rem;"
+                                        onClick="window.location.href='/campaign'">Cancel</button>
+                                    &nbsp;
                                 </div>
                             </div>
                         </form>
@@ -103,7 +128,3 @@
 
     </div>
 </div>
-
-<script type="text/javascript">
-
-</script>
