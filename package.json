@@ -8,6 +8,7 @@
     "build:ci": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:ci": "ng test --no-watch --no-progress --browsers ChromeHeadlessCI",
     "server": "json-server --watch ./server/Influencers.json",
     "serverUsers": "json-server --watch ./server/Users.json --id EMAIL -p 5000",
     "serverPayments": "json-server --watch ./server/Payments.json --id PAYMENTS_ID -p 5001"
