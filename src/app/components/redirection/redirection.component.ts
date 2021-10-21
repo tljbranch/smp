@@ -1,4 +1,4 @@
-import { Attribute, Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { Attribute, Component, OnInit,ChangeDetectorRef, NgZone } from '@angular/core';
 import { MatSpinner } from '@angular/material/progress-spinner';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
@@ -17,10 +17,10 @@ export class RedirectionComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private route: Router,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit(): void {
-    
     this.usersService.getCurrentUser().subscribe((user) => {
       console.log('Redirection - User init');
       if (user) {
@@ -34,7 +34,9 @@ export class RedirectionComponent implements OnInit {
           case null:
             console.log('User type not confirmed');
             this.routeValue = "/profile-edit";
-            this.route.navigate([this.routeValue]);
+            this.ngZone.run(() => {
+              this.route.navigate([this.routeValue]);
+            });           
             break;
           default:
             console.log('User type found', user.USER_TYPE);
@@ -45,12 +47,16 @@ export class RedirectionComponent implements OnInit {
       }else{
         console.log('User Not type found');
           this.routeValue = "/profile-edit";
-          this.route.navigate([this.routeValue]);
+          this.ngZone.run(() => {
+            this.route.navigate([this.routeValue]);
+          }); 
       }
     }, (error) => {
       console.log('Error not an existing user');
       this.routeValue = "/profile-edit";
-      this.route.navigate([this.routeValue]);
+      this.ngZone.run(() => {
+        this.route.navigate([this.routeValue]);
+      }); 
     });
   }
 
