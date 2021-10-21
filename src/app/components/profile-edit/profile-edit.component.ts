@@ -33,23 +33,23 @@ export class ProfileEditComponent implements OnInit {
 
   profileForm = new FormGroup({
     EMAIL: new FormControl('', [Validators.required, Validators.email]),
-    BIRTHDATE: new FormControl('', [Validators.required]),
     BLOCK_NUMBER: new FormControl('', [Validators.required]),
+    CONTACT_NUMBER: new FormControl('', [Validators.required]),
+    POSTAL_CODE: new FormControl('', [Validators.required]),
+    STREET_NAME: new FormControl('', [Validators.required]),
+    UNIT_NUMBER: new FormControl('', [Validators.required]),
+    USER_TYPE: new FormControl('', [Validators.required]),
+    BIRTHDATE: new FormControl(''),
     CAMPAIGN_FUNDS: new FormControl(''),
     CATEGORY: new FormControl(''),
     COMPANY_NAME: new FormControl(''),
-    CONTACT_NUMBER: new FormControl('', [Validators.required]),
     FULL_NAME: new FormControl(''),
     GENDER: new FormControl(''),
     LANGUAGE: new FormControl(''),
     NATIONALITY: new FormControl(''),
-    POSTAL_CODE: new FormControl('', [Validators.required]),
     PROFILE_PHOTO: new FormControl(''),
     SOCIAL_MEDIA: new FormControl(''),
-    STREET_NAME: new FormControl('', [Validators.required]),
     TAGS: new FormControl(''),
-    UNIT_NUMBER: new FormControl('', [Validators.required]),
-    USER_TYPE: new FormControl('', [Validators.required]),
     VERIFIED: new FormControl(''),
   });
 
@@ -123,30 +123,30 @@ export class ProfileEditComponent implements OnInit {
   }
 
   async getCategory() {
-      if(this.categories.length > 0){
-        this.categories = [];
+    if (this.categories.length > 0) {
+      this.categories = [];
+    }
+    await this.classifications.classifications.forEach((element) => {
+      if (element.TYPES === 'CATEGORY') {
+        this.categories.push(element);
       }
-      await this.classifications.classifications.forEach((element) => {
-        if (element.TYPES === 'CATEGORY') {
-          this.categories.push(element);
-        }
-      });
-      this.ref.detectChanges();
+    });
+    this.ref.detectChanges();
   }
 
   async getTags() {
-      if(this.tags.length > 0){
-        if (this.profileForm.value.CATEGORY !== this.tags[0].PARENT) {
-          this.profileForm.controls['TAGS'].setValue([]);
-        }
-        this.tags = [];
+    if (this.tags.length > 0) {
+      if (this.profileForm.value.CATEGORY !== this.tags[0].PARENT) {
+        this.profileForm.controls['TAGS'].setValue([]);
       }
-      await this.classifications.classifications.forEach((element) => {
-        if (element.TYPES === 'TAG' && element.PARENT === this.profileForm.value.CATEGORY) {
-          this.tags.push(element);
-        }
-      });
-      this.ref.detectChanges();
+      this.tags = [];
+    }
+    await this.classifications.classifications.forEach((element) => {
+      if (element.TYPES === 'TAG' && element.PARENT === this.profileForm.value.CATEGORY) {
+        this.tags.push(element);
+      }
+    });
+    this.ref.detectChanges();
   }
 
   setUpdateForm(user: UserModel) {
@@ -188,50 +188,52 @@ export class ProfileEditComponent implements OnInit {
   }
 
   addForm() {
-    if (this.profileForm.value.USER_TYPE === "Company") {
-      let company = {
-        EMAIL: this.profileForm.value.EMAIL,
-        USER_TYPE: this.profileForm.value.USER_TYPE,
-        COMPANY_NAME: this.profileForm.value.COMPANY_NAME,
-        CAMPAIGN_FUNDS: this.profileForm.value.CAMPAIGN_FUNDS,
-        NATIONALITY: this.profileForm.value.NATIONALITY,
-        CONTACT_NUMBER: this.profileForm.value.CONTACT_NUMBER,
-        BLOCK_NUMBER: this.profileForm.value.BLOCK_NUMBER,
-        STREET_NAME: this.profileForm.value.STREET_NAME,
-        UNIT_NUMBER: this.profileForm.value.UNIT_NUMBER,
-        POSTAL_CODE: this.profileForm.value.POSTAL_CODE
-      }
-      this.usersService.addUser(company).subscribe(() => {
-        this.router.navigate(['/profile']);
-      }), (error => {
-        console.log(error);
-      });
-    }
-    else {
-      if (this.profileForm.value.USER_TYPE === "Influencer") {
-        let influencer = {
+    this.ngZone.run(() => {
+      if (this.profileForm.value.USER_TYPE === "Company") {
+        let company = {
           EMAIL: this.profileForm.value.EMAIL,
           USER_TYPE: this.profileForm.value.USER_TYPE,
-          BIRTHDATE: this.profileForm.value.BIRTHDATE,
-          CATEGORY: this.profileForm.value.CATEGORY,
-          TAGS: this.profileForm.value.TAGS,
+          COMPANY_NAME: this.profileForm.value.COMPANY_NAME,
+          CAMPAIGN_FUNDS: this.profileForm.value.CAMPAIGN_FUNDS,
           NATIONALITY: this.profileForm.value.NATIONALITY,
-          LANGUAGE: this.profileForm.value.LANGUAGE,
-          SOCIAL_MEDIA: this.profileForm.value.SOCIAL_MEDIA,
-          FULL_NAME: this.profileForm.value.FULL_NAME,
           CONTACT_NUMBER: this.profileForm.value.CONTACT_NUMBER,
           BLOCK_NUMBER: this.profileForm.value.BLOCK_NUMBER,
           STREET_NAME: this.profileForm.value.STREET_NAME,
           UNIT_NUMBER: this.profileForm.value.UNIT_NUMBER,
           POSTAL_CODE: this.profileForm.value.POSTAL_CODE
         }
-        this.usersService.addUser(influencer).subscribe(() => {
+        this.usersService.addUser(company).subscribe(() => {
           this.router.navigate(['/profile']);
         }), (error => {
           console.log(error);
         });
       }
-    }
+      else {
+        if (this.profileForm.value.USER_TYPE === "Influencer") {
+          let influencer = {
+            EMAIL: this.profileForm.value.EMAIL,
+            USER_TYPE: this.profileForm.value.USER_TYPE,
+            BIRTHDATE: this.profileForm.value.BIRTHDATE,
+            CATEGORY: this.profileForm.value.CATEGORY,
+            TAGS: this.profileForm.value.TAGS,
+            NATIONALITY: this.profileForm.value.NATIONALITY,
+            LANGUAGE: this.profileForm.value.LANGUAGE,
+            SOCIAL_MEDIA: this.profileForm.value.SOCIAL_MEDIA,
+            FULL_NAME: this.profileForm.value.FULL_NAME,
+            CONTACT_NUMBER: this.profileForm.value.CONTACT_NUMBER,
+            BLOCK_NUMBER: this.profileForm.value.BLOCK_NUMBER,
+            STREET_NAME: this.profileForm.value.STREET_NAME,
+            UNIT_NUMBER: this.profileForm.value.UNIT_NUMBER,
+            POSTAL_CODE: this.profileForm.value.POSTAL_CODE
+          }
+          this.usersService.addUser(influencer).subscribe(() => {
+            this.router.navigate(['/profile']);
+          }), (error => {
+            console.log(error);
+          });
+        }
+      }
+    })
   }
 
   editForm() {
