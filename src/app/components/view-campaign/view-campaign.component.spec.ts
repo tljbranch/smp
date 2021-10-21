@@ -3,23 +3,23 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
-import { DiscoverComponent } from './discover.component';
+import { ViewCampaignComponent } from './view-campaign.component';
 
-describe('DiscoverComponent', () => {
-  let component: DiscoverComponent;
-  let fixture: ComponentFixture<DiscoverComponent>;
+describe('ViewCampaignComponent', () => {
+  let component: ViewCampaignComponent;
+  let fixture: ComponentFixture<ViewCampaignComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule, RouterTestingModule ],
-      declarations: [ DiscoverComponent ],
+      declarations: [ ViewCampaignComponent ],
       providers: [ NgxNavigationWithDataComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiscoverComponent);
+    fixture = TestBed.createComponent(ViewCampaignComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

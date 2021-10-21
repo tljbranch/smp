@@ -39,10 +39,10 @@ export class ProfileEditComponent implements OnInit {
     STREET_NAME: new FormControl('', [Validators.required]),
     UNIT_NUMBER: new FormControl('', [Validators.required]),
     USER_TYPE: new FormControl('', [Validators.required]),
-    BIRTHDATE: new FormControl(''),
     CAMPAIGN_FUNDS: new FormControl(''),
-    CATEGORY: new FormControl(''),
     COMPANY_NAME: new FormControl(''),
+    BIRTHDATE: new FormControl(''),
+    CATEGORY: new FormControl(''),
     FULL_NAME: new FormControl(''),
     GENDER: new FormControl(''),
     LANGUAGE: new FormControl(''),
@@ -175,6 +175,8 @@ export class ProfileEditComponent implements OnInit {
 
       this.getCategory();
       this.getTags();
+      console.log(this.categories);
+      console.log(this.tags);
       this.ref.detectChanges();
     })
   }

@@ -7,14 +7,12 @@ import { CampaignComponent } from './components/campaign/campaign.component';
 import { CampaignEditComponent } from './components/campaign-edit/campaign-edit.component';
 import { DiscoverComponent } from './components/discover/discover.component';
 import { PaymentComponent } from './components/payment/payment.component';
-import { CompanyComponent } from './components/company/company.component';
-import { CompanyEditComponent } from './components/company-edit/company-edit.component';
 import { RedirectionComponent } from './components/redirection/redirection.component';
 import { CreateCampaignComponent } from './components/create-campaign/create-campaign.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { ViewCampaignComponent } from './components/view-campaign/view-campaign.component';
 
 
-import {UserTypeSelectComponent} from './components/user-type-select/user-type-select.component';
 import {CheckoutSuccessComponent} from './components/checkout-success/checkout-success.component';
 import {CheckoutCompleteComponent} from './components/checkout-complete/checkout-complete.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
@@ -32,16 +30,6 @@ const routes: Routes = [
   {
     path: 'profile-edit',
     component : ProfileEditComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'company',
-    component : CompanyComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'company-edit',
-    component : CompanyEditComponent,
     pathMatch: 'full'
   },
   {
@@ -68,12 +56,7 @@ const routes: Routes = [
     path: 'redirection',
     component : RedirectionComponent,
     pathMatch: 'full'
-  },
-  {
-    path: 'user-type-select',
-    component : UserTypeSelectComponent,
-    pathMatch: 'full'
-  },  
+  }, 
   {
     path: 'create-campaign',
     component: CreateCampaignComponent,
@@ -97,6 +80,11 @@ const routes: Routes = [
   {
     path: 'feedback',
     component : FeedbackComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'view-campaign',
+    component : ViewCampaignComponent,
     pathMatch: 'full'
   }
 ];
