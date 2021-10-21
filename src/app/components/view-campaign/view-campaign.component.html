@@ -1,5 +1,8 @@
 <div class="container">
     <div class="main-body">
+        <div *ngIf="applied === true" class="alert alert-primary" role="alert">
+            You have already Applied!
+          </div>
         <div class="row gutters-sm">
             <div class="col-md-12">
                 <div class="card mb-3">
@@ -84,6 +87,8 @@
                                 <div class="form-group">
                                     <a class="btn btn-secondary" style="float: left;"
                                         [routerLink]="['/discover']">Back</a>
+                                    <button [disabled]="applied === true" class="btn btn-success" style="float: right;"
+                                        (click)="applyCampaign()" name="apply">Apply</button>
                                 </div>
                             </div>
                         </div>

@@ -75,7 +75,7 @@
                             </nav>
                             &nbsp;
                             <button type="submit" class="btn btn-primary"
-                                [disabled]="!createForm.form.valid">Submit</button>
+                                [disabled]="!createForm.form.valid || user.CAMPAIGN_FUNDS < 5">Submit</button>
                             &nbsp;
                             <button type="button" class="btn btn-outline-danger"
                                 onClick="window.location.href='/campaign'">Cancel</button>

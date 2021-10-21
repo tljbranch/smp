@@ -9,4 +9,5 @@ export class Campaign{
     START_DATE?: number;
     END_DATE?: number;
     STATUS?: boolean;
+    APPLIED: string[];
 }
